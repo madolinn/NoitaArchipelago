@@ -39,7 +39,9 @@ return {
 	SECRET_POTION_ITEM_ID = 110024,
 	POWDER_STASH_ITEM_ID = 110025,
 	KAMMI_ITEM_ID = 110028,
-
+	
+	-- IDs for animals
+	FIRST_ANIMAL_ID = 112000,
 
 	-- Item flag constants.
 	-- See https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/network%20protocol.md#networkitem

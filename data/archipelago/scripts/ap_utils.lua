@@ -3,6 +3,7 @@ dofile_once("data/scripts/perks/perk.lua")
 local AP = dofile("data/archipelago/scripts/constants.lua")
 local Log = dofile("data/archipelago/scripts/logger.lua")
 local Globals = dofile("data/archipelago/scripts/globals.lua")
+local Animals = dofile("data/archipelago/scripts/ap_animal_mapping.lua")
 
 
 function contains_element(tbl, elem)
@@ -246,6 +247,12 @@ function getInternalVariableValue(entity_id, variable_name, variable_type)
 	return value
 end
 
+function getLocationByAnimalName(entityName)
+	if Animals[entityName] ~= nil then
+		return Animals[entityName].location_id or nil
+	end
+	return nil
+end
 
 function create_ap_entity_from_flags(location, x, y)
 	local flags = location.item_flags

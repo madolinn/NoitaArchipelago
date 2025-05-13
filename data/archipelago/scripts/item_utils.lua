@@ -85,6 +85,12 @@ function NGSpawnItems(item_counts)
 		ng_spawn_check = true
 		print("spawning items in mountain using NGSpawnItems")
 	end
+	
+	-- setting the random seed using arbitrary offsets that get modified on each spawn
+	local rand_x = GlobalsGetValue("ap_random_hax")
+	local rand_y = rand_x * 2
+	SeedRandom(rand_x, rand_y)
+	
 	local itemx = 595
 	local itemy = -90
 	local wandx = 600

@@ -327,7 +327,10 @@ function RECV_MSG.Connected()
 	if slot_options.path_option == 4 then
 		GameAddFlagRun("ap_parallel_worlds")
 	end
-
+	if slot_options.animals_need_credit ~= nil then
+		GlobalsSetValue("ap_animals_need_credit", slot_options.animals_need_credit)
+	end
+	
 	current_player_slot = ap:get_player_number()
 	Globals.PlayerSlot:set(current_player_slot)
 
@@ -509,7 +512,7 @@ end
 ----------------------------------------------------------------------------------------------------
 -- NEW AP MESSAGE HANDLING
 ----------------------------------------------------------------------------------------------------
-local GAME_NAME = "Noita"
+local GAME_NAME = "Noita-Killsanity"
 local ITEMS_HANDLING = 7 -- full remote
 
 local function connect()
