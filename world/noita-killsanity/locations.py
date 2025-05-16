@@ -2,6 +2,8 @@
 from enum import IntEnum
 from typing import Dict, NamedTuple, Optional, Set
 
+from . import animals_mapping
+
 from BaseClasses import Location
 
 
@@ -21,15 +23,6 @@ class LocationFlag(IntEnum):
     side_path = 2
     main_world = 3
     parallel_worlds = 4
-    
-class AnimalLocationFlag(IntEnum):
-    none = 0
-    main_path = 1
-    side_path = 2
-    reasonable = 3
-    pain = 4
-    never = 99
-
 
 # Mapping of items in each region.
 # Only the first Hidden Chest and Pedestal are mapped here, the others are created in Regions.
@@ -107,7 +100,7 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
     "Pyramid": {
         "Kolmisilmän Koipi": LocationData(110649, LocationFlag.main_world, "Boss"),
         "Pyramid Orb":       LocationData(110659, LocationFlag.main_world, "Orb"),
-        "Sandcave Orb":      LocationData(110662, LocationFlag.main_world, "Orb"),
+        "Desert Chasm Orb":      LocationData(110662, LocationFlag.main_world, "Orb"),
     },
     "Overgrown Cavern": {
         "Overgrown Cavern Chest":    LocationData(110526, LocationFlag.main_world, "Chest"),
@@ -186,14 +179,14 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
         "Wizards' Den Chest":    LocationData(110446, LocationFlag.main_world, "Chest"),
         "Wizards' Den Pedestal": LocationData(110466, LocationFlag.main_world, "Pedestal"),
     },
-    "Powerplant": {
+    "Power Plant": {
         "Kolmisilmän silmä":    LocationData(110657, LocationFlag.main_world, "Boss"),
         "Power Plant Chest":    LocationData(110486, LocationFlag.main_world, "Chest"),
         "Power Plant Pedestal": LocationData(110506, LocationFlag.main_world, "Pedestal"),
     },
-    "Snow Chasm": {
+    "Snowy Chasm": {
         "Unohdettu":      LocationData(110653, LocationFlag.main_world, "Boss"),
-        "Snow Chasm Orb": LocationData(110667, LocationFlag.main_world, "Orb"),
+        "Snowy Chasm Orb": LocationData(110667, LocationFlag.main_world, "Orb"),
     },
     "Meat Realm": {
         "Meat Realm Chest": LocationData(110086, LocationFlag.main_world, "Chest"),
@@ -212,199 +205,20 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
     "The Work (Hell)": {
         "The Work (Hell) Orb": LocationData(110666, LocationFlag.main_world, "Orb"),
     },
+    "Forest": {},
+    "Collapsed Mines": {},
+    "Desert Chasm": {},
+    "Snowy Chasm": {},
+    "The Work (Sky)": {},
+    "Parallel Worlds": {},
+    
 }
 
-# Use an array to keep the ordering consistent. Sorry..
-animal_location_names = [
-    ["player", AnimalLocationFlag.main_path],
-    ["sheep", AnimalLocationFlag.reasonable],
-    ["sheep_bat", AnimalLocationFlag.reasonable],
-    ["sheep_fly", AnimalLocationFlag.reasonable],
-    ["scorpion", AnimalLocationFlag.main_path],
-    ["fish", AnimalLocationFlag.main_path],
-    ["fish_large", AnimalLocationFlag.side_path],
-    ["duck", AnimalLocationFlag.reasonable],
-    ["wolf", AnimalLocationFlag.reasonable],
-    ["deer", AnimalLocationFlag.reasonable],
-    ["elk", AnimalLocationFlag.reasonable],
-    ["eel", AnimalLocationFlag.reasonable],
-    ["zombie_weak", AnimalLocationFlag.main_path],
-    ["zombie", AnimalLocationFlag.main_path],
-    ["miner_weak", AnimalLocationFlag.main_path],
-    ["miner", AnimalLocationFlag.main_path],
-    ["miner_fire", AnimalLocationFlag.main_path],
-    ["miner_santa", AnimalLocationFlag.never],
-    ["miner_chef", AnimalLocationFlag.never],
-    ["goblin_bomb", AnimalLocationFlag.main_path],
-    ["shotgunner_weak", AnimalLocationFlag.main_path],
-    ["shotgunner", AnimalLocationFlag.main_path],
-    ["scavenger_smg", AnimalLocationFlag.main_path],
-    ["scavenger_grenade", AnimalLocationFlag.main_path],
-    ["scavenger_mine", AnimalLocationFlag.main_path],
-    ["scavenger_heal", AnimalLocationFlag.main_path],
-    ["scavenger_glue", AnimalLocationFlag.main_path],
-    ["scavenger_invis", AnimalLocationFlag.main_path],
-    ["scavenger_shield", AnimalLocationFlag.side_path],
-    ["scavenger_poison", AnimalLocationFlag.main_path],
-    ["scavenger_clusterbomb", AnimalLocationFlag.main_path],
-    ["scavenger_leader", AnimalLocationFlag.main_path],
-    ["alchemist", AnimalLocationFlag.main_path],
-    ["sniper", AnimalLocationFlag.main_path],
-    ["shaman", AnimalLocationFlag.main_path],
-    ["coward", AnimalLocationFlag.main_path],
-    ["flamer", AnimalLocationFlag.main_path],
-    ["icer", AnimalLocationFlag.main_path],
-    ["bigzombie", AnimalLocationFlag.main_path],
-    ["bigzombietorso", AnimalLocationFlag.main_path],
-    ["bigzombiehead", AnimalLocationFlag.main_path],
-    ["slimeshooter_weak", AnimalLocationFlag.main_path],
-    ["slimeshooter", AnimalLocationFlag.main_path],
-    ["acidshooter_weak", AnimalLocationFlag.main_path],
-    ["acidshooter", AnimalLocationFlag.main_path],
-    ["lasershooter", AnimalLocationFlag.main_path],
-    ["giantshooter_weak", AnimalLocationFlag.main_path],
-    ["giantshooter", AnimalLocationFlag.main_path],
-    ["miniblob", AnimalLocationFlag.main_path],
-    ["blob", AnimalLocationFlag.main_path],
-    ["ant", AnimalLocationFlag.side_path],
-    ["rat", AnimalLocationFlag.main_path],
-    ["bat", AnimalLocationFlag.main_path],
-    ["bigbat", AnimalLocationFlag.main_path],
-    ["firebug", AnimalLocationFlag.main_path],
-    ["bigfirebug", AnimalLocationFlag.main_path],
-    ["bloom", AnimalLocationFlag.main_path],
-    ["shooterflower", AnimalLocationFlag.main_path],
-    ["fly", AnimalLocationFlag.main_path],
-    ["frog", AnimalLocationFlag.side_path],
-    ["frog_big", AnimalLocationFlag.side_path],
-    ["fungus", AnimalLocationFlag.main_path], #Laahustussieni
-    ["fungus_big", AnimalLocationFlag.side_path], #Nuijamalikka
-    ["fungus_giga", AnimalLocationFlag.side_path], #Huhtasieni
-    ["lurker", AnimalLocationFlag.reasonable], #Varjokupla
-    ["maggot", AnimalLocationFlag.side_path],
-    ["skullrat", AnimalLocationFlag.main_path],
-    ["skullfly", AnimalLocationFlag.main_path],
-    ["tentacler_small", AnimalLocationFlag.main_path],
-    ["tentacler", AnimalLocationFlag.main_path],
-    ["ghoul", AnimalLocationFlag.pain], #Sylkyri
-    ["giant", AnimalLocationFlag.main_path],
-    ["pebble_physics", AnimalLocationFlag.reasonable], #Lohkare
-    ["longleg", AnimalLocationFlag.main_path],
-    ["lukki_tiny", AnimalLocationFlag.main_path],
-    ["lukki", AnimalLocationFlag.main_path],
-    ["lukki_longleg", AnimalLocationFlag.main_path],
-    ["lukki_creepy_long", AnimalLocationFlag.reasonable],
-    ["lukki_dark", AnimalLocationFlag.reasonable],
-    ["worm_tiny", AnimalLocationFlag.reasonable],
-    ["worm", AnimalLocationFlag.main_path],
-    ["worm_big", AnimalLocationFlag.reasonable],
-    ["worm_skull", AnimalLocationFlag.main_path],
-    ["worm_end", AnimalLocationFlag.pain],
-    ["drone_physics", AnimalLocationFlag.main_path], #Lennokki
-    ["drone_lasership", AnimalLocationFlag.main_path], #Jättilaser-lennokki
-    ["drone_shield", AnimalLocationFlag.side_path], #Turvalennokki
-    ["basebot_sentry", AnimalLocationFlag.pain], #Tarkkailija
-    ["basebot_hidden", AnimalLocationFlag.pain], #Vakoilija
-    ["basebot_neutralizer", AnimalLocationFlag.pain], #Pysäyttäjä
-    ["basebot_soldier", AnimalLocationFlag.pain], #Pysäyttäjä
-    ["healerdrone_physics", AnimalLocationFlag.reasonable], #Korjauslennokki
-    ["roboguard", AnimalLocationFlag.main_path], #Robottikyttä
-    ["roboguard_big", AnimalLocationFlag.pain], #Kyrmyniska
-    ["assassin", AnimalLocationFlag.main_path],
-    ["spearbot", AnimalLocationFlag.main_path], #Peitsivartija
-    ["tank", AnimalLocationFlag.main_path],
-    ["tank_rocket", AnimalLocationFlag.main_path],
-    ["tank_super", AnimalLocationFlag.main_path],
-    ["turret_left", AnimalLocationFlag.never],
-    ["turret_right", AnimalLocationFlag.main_path], #Torjuntalaite - Left inherits right; duplicate
-    ["monk", AnimalLocationFlag.main_path],
-    ["missilecrab", AnimalLocationFlag.main_path],
-    ["necrobot", AnimalLocationFlag.reasonable],
-    ["necrobot_super", AnimalLocationFlag.pain],
-    ["fireskull", AnimalLocationFlag.main_path],
-    ["iceskull", AnimalLocationFlag.main_path],
-    ["thunderskull", AnimalLocationFlag.main_path],
-    ["firemage_weak", AnimalLocationFlag.main_path],
-    ["firemage", AnimalLocationFlag.main_path],
-    ["icemage", AnimalLocationFlag.main_path],
-    ["thundermage", AnimalLocationFlag.main_path],
-    ["thundermage_big", AnimalLocationFlag.reasonable],
-    ["barfer", AnimalLocationFlag.main_path],
-    ["wizard_dark", AnimalLocationFlag.main_path],
-    ["wizard_tele", AnimalLocationFlag.main_path],
-    ["wizard_poly", AnimalLocationFlag.reasonable], #Only because they're so dangerous.
-    ["wizard_swapper", AnimalLocationFlag.main_path],
-    ["wizard_neutral", AnimalLocationFlag.main_path],
-    ["wizard_returner", AnimalLocationFlag.main_path],
-    ["wizard_hearty", AnimalLocationFlag.main_path],
-    ["wizard_homing", AnimalLocationFlag.side_path],
-    ["wizard_weaken", AnimalLocationFlag.side_path],
-    ["wizard_twitchy", AnimalLocationFlag.main_path],
-    ["enlightened_alchemist", AnimalLocationFlag.main_path],
-    ["failed_alchemist", AnimalLocationFlag.main_path],
-    ["failed_alchemist_b", AnimalLocationFlag.main_path],
-    ["wraith", AnimalLocationFlag.main_path],
-    ["wraith_storm", AnimalLocationFlag.pain],
-    ["wraith_glowing", AnimalLocationFlag.main_path],
-    ["statue", AnimalLocationFlag.side_path],
-    ["statue_physics", AnimalLocationFlag.main_path],
-    ["snowcrystal", AnimalLocationFlag.reasonable],
-    ["hpcrystal", AnimalLocationFlag.reasonable],
-    ["ghost", AnimalLocationFlag.main_path],
-    ["wand_ghost", AnimalLocationFlag.side_path],
-    ["ethereal_being", AnimalLocationFlag.reasonable],
-    ["playerghost", AnimalLocationFlag.never], #Kummitus, good luck.
-    ["phantom_a", AnimalLocationFlag.side_path],
-    ["phantom_b", AnimalLocationFlag.side_path],
-    ["confusespirit", AnimalLocationFlag.reasonable], #
-    ["berserkspirit", AnimalLocationFlag.reasonable], # These 4 combined are just really uncommon, though technically available in numerous locations.
-    ["weakspirit", AnimalLocationFlag.reasonable], #
-    ["slimespirit", AnimalLocationFlag.reasonable], # 
-    ["necromancer", AnimalLocationFlag.main_path],
-    ["gazer", AnimalLocationFlag.pain],
-    ["skygazer", AnimalLocationFlag.pain],
-    ["spitmonster", AnimalLocationFlag.pain],
-    ["crystal_physics", AnimalLocationFlag.main_path],
-    ["bloodcrystal_physics", AnimalLocationFlag.pain],
-    ["skycrystal_physics", AnimalLocationFlag.pain],
-    ["chest_mimic", AnimalLocationFlag.pain],
-    ["chest_leggy", AnimalLocationFlag.never], # Good luck ever finding this
-    ["miner_hell", AnimalLocationFlag.pain],
-    ["shotgunner_hell", AnimalLocationFlag.pain],
-    ["sniper_hell", AnimalLocationFlag.pain],
-    ["dark_alchemist", AnimalLocationFlag.never], # Good luck ever finding this x4
-    ["shaman_wind", AnimalLocationFlag.never], # Good luck ever finding this x4
-    ["necromancer_shop", AnimalLocationFlag.reasonable], #Steve
-    ["necromancer_super", AnimalLocationFlag.reasonable],
-    # Start bosses here. Most are handled by other logic, but we need to keep this list intact.
-    ["boss_dragon", AnimalLocationFlag.never],
-    ["boss_limbs", AnimalLocationFlag.never],
-    ["boss_meat", AnimalLocationFlag.never],
-    ["boss_alchemist", AnimalLocationFlag.never],
-    ["parallel_alchemist", AnimalLocationFlag.pain],
-    ["boss_ghost", AnimalLocationFlag.never],
-    ["boss_ghost_polyp", AnimalLocationFlag.never],
-    ["islandspirit", AnimalLocationFlag.never],
-    ["boss_pit", AnimalLocationFlag.never],
-    ["boss_robot", AnimalLocationFlag.never],
-    ["fish_giga", AnimalLocationFlag.never],
-    ["maggot_tiny", AnimalLocationFlag.never],
-    ["parallel_tentacles", AnimalLocationFlag.pain],
-    ["minipit", AnimalLocationFlag.never],
-    ["gate_monster_a", AnimalLocationFlag.never],
-    ["gate_monster_b", AnimalLocationFlag.never],
-    ["gate_monster_c", AnimalLocationFlag.never],
-    ["gate_monster_d", AnimalLocationFlag.never],
-    ["boss_wizard", AnimalLocationFlag.never],
-    ["boss_centipede", AnimalLocationFlag.never],
-    ["ultimate_killer", AnimalLocationFlag.never],
-    ["friend", AnimalLocationFlag.never],
-]
-
-for ind, animal in enumerate(animal_location_names):
-    locname = "Kill " + animal[0].replace("_", " ").title()
-    location_region_mapping["Coal Pits"][locname] = LocationData(ind + 112000 + 1, animal[1], "Kill") # Lua starts at 1
-
+for animal_name, animal_data in animals_mapping.location_animal_mapping.items():
+    region_loc = animal_data.regions[0]
+    name = animal_data.names[0]
+    locname = "Kill " + name
+    location_region_mapping[region_loc][locname] = animal_data
 
 def make_location_range(location_name: str, base_id: int, amt: int) -> Dict[str, int]:
     if amt == 1:

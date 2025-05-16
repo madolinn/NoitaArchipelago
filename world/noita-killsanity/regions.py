@@ -70,7 +70,7 @@ def create_all_regions_and_connections(world: "NoitaWorld") -> None:
 # - Lukki Lair is disconnected from The Vault
 # - Overgrown Cavern is connected to the Underground Jungle instead of the Desert due to similar difficulty
 # - Powerplant is disconnected from the Sandcave due to difficulty and sphere creation
-# - Snow Chasm is disconnected from the Snowy Wasteland
+# - Snowy Chasm is disconnected from the Snowy Wasteland
 # - Pyramid is connected to the Hiisi Base instead of the Desert due to similar difficulty
 # - Frozen Vault is connected to the Vault instead of the Snowy Wasteland due to similar difficulty
 # - Lake is connected to The Laboratory, since the bosses are hard without specific set-ups (which means late game)
@@ -80,7 +80,7 @@ noita_connections: Dict[str, List[str]] = {
     "Menu": ["Forest"],
     "Forest": ["Mines", "Floating Island", "Desert", "Snowy Wasteland"],
     "Frozen Vault": ["The Vault"],
-    "Overgrown Cavern": ["Sandcave"],
+    "Overgrown Cavern": ["Desert Chasm"],
 
     ###
     "Mines": ["Collapsed Mines", "Coal Pits Holy Mountain", "Lava Lake"],
@@ -100,7 +100,7 @@ noita_connections: Dict[str, List[str]] = {
 
     ###
     "Underground Jungle Holy Mountain": ["Underground Jungle"],
-    "Underground Jungle": ["Dragoncave", "Overgrown Cavern", "Vault Holy Mountain", "Lukki Lair", "Snow Chasm", "West Meat Realm"],
+    "Underground Jungle": ["Dragoncave", "Overgrown Cavern", "Vault Holy Mountain", "Lukki Lair", "Snowy Chasm", "West Meat Realm"],
 
     ###
     "Vault Holy Mountain": ["The Vault"],
@@ -109,8 +109,8 @@ noita_connections: Dict[str, List[str]] = {
     ###
     "Temple of the Art Holy Mountain": ["Temple of the Art"],
     "Temple of the Art": ["Laboratory Holy Mountain", "The Tower", "Wizards' Den"],
-    "Wizards' Den": ["Powerplant"],
-    "Powerplant": ["Meat Realm"],
+    "Wizards' Den": ["Power Plant"],
+    "Power Plant": ["Meat Realm"],
 
     ###
     "Laboratory Holy Mountain": ["The Laboratory"],
