@@ -3,6 +3,7 @@ from enum import IntEnum
 from typing import Dict, NamedTuple, Optional, Set
 
 from . import animals_mapping
+from . import forges_mapping
 
 from BaseClasses import Location
 
@@ -100,8 +101,11 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
     "Pyramid": {
         "Kolmisilmän Koipi": LocationData(110649, LocationFlag.main_world, "Boss"),
         "Pyramid Orb":       LocationData(110659, LocationFlag.main_world, "Orb"),
-        "Desert Chasm Orb":      LocationData(110662, LocationFlag.main_world, "Orb"),
     },
+    "Sandcave": {
+        "Sandcave Orb": LocationData(110662, LocationFlag.main_world, "Orb"),
+    },
+    "Desert Chasm": {},
     "Overgrown Cavern": {
         "Overgrown Cavern Chest":    LocationData(110526, LocationFlag.main_world, "Chest"),
         "Overgrown Cavern Pedestal": LocationData(110546, LocationFlag.main_world, "Pedestal"),
@@ -207,7 +211,6 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
     },
     "Forest": {},
     "Collapsed Mines": {},
-    "Desert Chasm": {},
     "Snowy Chasm": {},
     "The Work (Sky)": {},
     "Parallel Worlds": {},
@@ -220,6 +223,10 @@ for animal_name, animal_data in animals_mapping.location_animal_mapping.items():
     locname = "Kill " + name
     location_region_mapping[region_loc][locname] = animal_data
 
+for location_name, forge_data in forges_mapping.location_forge_mapping.items():
+    region_loc = forge_data.region
+    location_region_mapping[region_loc][location_name] = forge_data
+
 def make_location_range(location_name: str, base_id: int, amt: int) -> Dict[str, int]:
     if amt == 1:
         return {location_name: base_id}
@@ -227,7 +234,7 @@ def make_location_range(location_name: str, base_id: int, amt: int) -> Dict[str,
 
 
 location_name_groups: Dict[str, Set[str]] = {"Shop": set(), "Orb": set(), "Boss": set(), "Chest": set(),
-                                             "Pedestal": set(), "Kill": set()}
+                                             "Pedestal": set(), "Kill": set(), "Forge": set()}
 location_name_to_id: Dict[str, int] = {}
 
 

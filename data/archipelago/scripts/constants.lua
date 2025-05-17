@@ -43,6 +43,11 @@ return {
 	-- IDs for animals
 	FIRST_ANIMAL_ID = 112000,
 
+	-- IDs for Forges
+	FORGE_WAND_ID = 111898,
+	FORGE_SPELL_ID = 111899,
+	FIRST_TABLET_ID = 111900,
+
 	-- Item flag constants.
 	-- See https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/network%20protocol.md#networkitem
 	ITEM_FLAG_PROGRESSION = 1,

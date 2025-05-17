@@ -18,8 +18,9 @@ def create_locations(world: "NoitaWorld", region: Region) -> None:
         is_orb_allowed = location_type == "Orb" and flag <= world.options.orbs_as_checks
         is_boss_allowed = location_type == "Boss" and flag <= world.options.bosses_as_checks
         is_animal_allowed = location_type == "Kill" and flag <= world.options.animals_as_checks
+        is_forge_allowed = location_type == "Forge" and flag <= world.options.forges_as_checks
         amount = 0
-        if flag == locations.LocationFlag.none or is_orb_allowed or is_boss_allowed or is_animal_allowed:
+        if flag == locations.LocationFlag.none or is_orb_allowed or is_boss_allowed or is_animal_allowed or is_forge_allowed:
             amount = 1
         elif location_type == "Chest" and flag <= world.options.path_option:
             amount = world.options.hidden_chests.value
@@ -69,7 +70,7 @@ def create_all_regions_and_connections(world: "NoitaWorld") -> None:
 # - Shaft is excluded to disconnect Mines from the Snowy Depths
 # - Lukki Lair is disconnected from The Vault
 # - Overgrown Cavern is connected to the Underground Jungle instead of the Desert due to similar difficulty
-# - Powerplant is disconnected from the Sandcave due to difficulty and sphere creation
+# - Power Plant is disconnected from the Sandcave due to difficulty and sphere creation
 # - Snowy Chasm is disconnected from the Snowy Wasteland
 # - Pyramid is connected to the Hiisi Base instead of the Desert due to similar difficulty
 # - Frozen Vault is connected to the Vault instead of the Snowy Wasteland due to similar difficulty
@@ -80,7 +81,7 @@ noita_connections: Dict[str, List[str]] = {
     "Menu": ["Forest"],
     "Forest": ["Mines", "Floating Island", "Desert", "Snowy Wasteland"],
     "Frozen Vault": ["The Vault"],
-    "Overgrown Cavern": ["Desert Chasm"],
+    "Overgrown Cavern": ["Sandcave", "Desert Chasm"],
 
     ###
     "Mines": ["Collapsed Mines", "Coal Pits Holy Mountain", "Lava Lake"],

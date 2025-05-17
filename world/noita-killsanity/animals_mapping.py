@@ -82,7 +82,7 @@ location_animal_mapping: Dict[str, AnimalLocation] = {
     "fungus_big": AnimalLocation(112063, [ "Nuijamalikka", "Club-foot" ], [ "Fungal Caverns", "Overgrown Cavern", "Mines", "The Tower", "Lukki Lair" ], AnimalLocationFlag.side_path),
     "fungus_giga": AnimalLocation(112064, [ "Huhtasieni", "Pollen Morel" ], [ "Overgrown Cavern", "The Tower" ], AnimalLocationFlag.side_path),
     "lurker": AnimalLocation(112065, [ "Varjokupla", "Shadow Bubble" ], [ "Lukki Lair" ], AnimalLocationFlag.reasonable),
-    "maggot": AnimalLocation(112066, [ "Toukka", "Maggot" ], [ "Underground Jungle", "Fungal Caverns", "The Vault", "Temple of the Art", "The Tower" ], AnimalLocationFlag.side_path),
+    "maggot": AnimalLocation(112066, [ "Toukka", "Maggot" ], [ "Underground Jungle", "Fungal Caverns", "The Vault", "Temple of the Art", "The Tower" ], AnimalLocationFlag.main_path),
     "skullrat": AnimalLocation(112067, [ "Kallorotta", "Skull Rat" ], [ "Pyramid", "Temple of the Art", "The Tower" ], AnimalLocationFlag.main_path),
     "skullfly": AnimalLocation(112068, [ "Kallokärpänen", "Skull Fly" ], [ "Pyramid", "Temple of the Art", "The Tower" ], AnimalLocationFlag.main_path),
     "tentacler_small": AnimalLocation(112069, [ "Pikkuturso", "Small Tentacler" ], [ "Fungal Caverns", "Temple of the Art", "The Tower" ], AnimalLocationFlag.main_path),

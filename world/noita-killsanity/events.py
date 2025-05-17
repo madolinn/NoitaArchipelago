@@ -3,7 +3,7 @@ from BaseClasses import Item, ItemClassification, Location, Region
 from . import items, locations
 
 if TYPE_CHECKING:
-    from . import NoitaKillsanityWorld
+    from . import NoitaWorld
 
 
 def create_event(player: int, name: str) -> Item:

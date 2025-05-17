@@ -42,3 +42,5 @@ ModLuaFileAppend("data/scripts/buildings/forge_item_convert.lua", "data/archipel
 
 -- XML EXTENSIONS
 dofile_once("data/archipelago/scripts/patches/ap_extend_death.lua")
+dofile_once("data/archipelago/scripts/patches/ap_extend_forged.lua")
+dofile_once("data/archipelago/scripts/patches/ap_patch_perk_pickup.lua")

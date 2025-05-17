@@ -76,12 +76,13 @@ class BossesAsChecks(Choice):
     option_side_path = 2
     option_all_bosses = 3
     default = 0
-    
+
+
 # Note: Most damageable entities are referred to internally as "Animals", including things such as the player character, Bosses, Crystals, Sheep, etc.
 # This option currently avoids bosses, except for the 2 common parallel bosses
 class AnimalsAsChecks(Choice):
     """
-    Makes all enemies count as location checks, apart from 1 time bosses. There is an option to toggle whether you need the kill credit yourself.
+    Makes all enemies count as location checks, apart from 1 time bosses.
     The Main Path option includes only the enemies appearing in the main biomes.
     The Side Path option includes the Main Path enemies, as well as the directly adjacent biomes.
     The Reasonable option includes everything that is accessible with some exploration.
@@ -94,14 +95,29 @@ class AnimalsAsChecks(Choice):
     option_reasonable = 3
     option_pain = 4
     default = 0
-    
-class AnimalChecksNeedCredit(Toggle):
+
+
+# Until we find a way to discern who killed what properly, get rid of this :(
+#class AnimalChecksNeedCredit(Toggle):
+#    """
+#    When combined with Enemies as Location Checks, this option requires the player to personally dispatch the enemy to acquire credit.
+#    Trick Kills and whackier wands may prevent credits from being awarded, as is a totally intended vanilla mechanic.
+#    """
+#    display_name = "Enemies require Kill Credit"
+class ForgesAsChecks(Choice):
     """
-    When combined with Enemies as Location Checks, this option requires the player to personally dispatch the enemy to acquire credit.
-    Trick Kills and whackier wands may prevent credits from being awarded, as is a totally intended vanilla mechanic.
+    Makes forgeable items to count as location checks, apart from 1 time bosses. There is an option to toggle whether you need the kill credit yourself.
+    The Items Only option only includes a single Broken Wand, and the Broken Portal Spell.
+    The Side Path option includes Items, as well as Emerald Tablets from the Magical Temple, Lukki Lair, and past the Lava Lake.
+    THe Main World option includes Items, as well as all Forgeable Emerald Tablets. 
     """
-    display_name = "Enemies require Kill Credit"
-    
+    display_name = "Forgeables as Location Checks"
+    option_no_forges = 0
+    option_items_only = 1
+    option_side_path = 2
+    option_main_world = 3
+    default = 0
+
 
 # Note: the Sampo is an item that is picked up to trigger the boss fight at the normal ending location.
 # The sampo is required for every ending (having orbs and bringing the sampo to a different spot changes the ending).
@@ -164,6 +180,6 @@ class NoitaOptions(PerGameCommonOptions):
     orbs_as_checks: OrbsAsChecks
     bosses_as_checks: BossesAsChecks
     animals_as_checks: AnimalsAsChecks
-    animals_need_credit: AnimalChecksNeedCredit
+    forges_as_checks: ForgesAsChecks
     extra_orbs: ExtraOrbs
     shop_price: ShopPrice
