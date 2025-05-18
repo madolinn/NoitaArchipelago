@@ -62,6 +62,9 @@ function SpawnItem(item_id, traps)
 	elseif item.potion ~= nil then
 		spawn_potion(item.items[1])
 		GlobalsSetValue("ap_random_hax", rand_x + 2)
+	elseif item.spells ~= nil then
+		spawn_spell(item.spells[1])
+		GlobalsSetValue("ap_random_hax", rand_x + 2)
 	elseif item.orb ~= nil then
 		local orb_count = GameGetOrbCountThisRun()
 		if GameHasFlagRun("ap_peaceful_goal") and orb_count >= 33 or GameHasFlagRun("ap_pure_goal") and orb_count >= 11 then
@@ -107,6 +110,7 @@ function NGSpawnItems(item_counts)
 	end
 
 	for item, quantity in pairs(item_counts) do
+		print("SPAWNING:" .. item)
 		if item_table[item].wand ~= nil then
 			-- spawn the wands in an array inside the cave
 			for _ = 1, quantity do
@@ -119,7 +123,18 @@ function NGSpawnItems(item_counts)
 				end
 			end
 			item_counts[item] = nil
-		
+		elseif item_table[item].spells ~= nil then
+			-- spawn the spells in an array inside the cave
+			for _ = 1, quantity do
+				local item_to_spawn = item_table[item].spells[Random(1, #item_table[item].spells)]
+				CreateItemActionEntity(item_to_spawn, itemx, itemy)
+				itemx = itemx + 20
+				if itemx >= 800 then
+					itemx = 600
+					itemy = itemy -10
+				end
+			end
+			item_counts[item] = nil
 		elseif item == AP.MAP_PERK_ID then
 			-- spawn the map perk on the ground, in case you find it distracting
 			perk_spawn(813, -96, item_table[item].perk)

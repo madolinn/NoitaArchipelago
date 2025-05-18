@@ -91,3 +91,8 @@ function item_pickup(entity_item, entity_who_picked, name)
 	GameAddFlagRun("ap" .. data.location_id)
 	Globals.LocationUnlockQueue:append(data.location_id)
 end
+
+function death ( damage_type_bit_field, damage_message, entity_thats_responsible, drop_items, ... )
+	local entity_id = GetUpdatedEntityID()
+	item_pickup(entity_id)
+end

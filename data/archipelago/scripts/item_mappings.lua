@@ -41,5 +41,7 @@ return {
 	[110030] = { items = { "data/entities/items/pickup/beamstone.xml" }, redeliverable = true, newgame = true }, -- sadekivi
 	[110031] = { items = { "data/entities/items/pickup/broken_wand.xml" }, redeliverable = true, newgame = true }, -- broken wand
 
-	[110032] = { items = { "data/archipelago/entities/items/pw_teleporter.xml" }, redeliverable = true, newgame = true, wand = true } -- pw teleporter for pw options
+	[110032] = { items = { "data/archipelago/entities/items/pw_teleporter.xml" }, redeliverable = true, newgame = true, wand = true }, -- pw teleporter for pw options
+
+	[110033] = { spells = { "GAMMA" }, redeliverable = true, newgame = true },
 }

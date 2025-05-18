@@ -43,6 +43,7 @@ local EnemyListAdjustments = {
 	
 	["boss_wizard"] = { 'data/entities/animals/boss_wizard/' },
 	["boss_centipede"] = { 'data/entities/animals/boss_centipede/' },
+	["boss_sky"] = { 'data/entities/animals/boss_sky/' },
 }
 
 function APAddDeathComponent()

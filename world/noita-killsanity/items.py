@@ -120,6 +120,8 @@ item_table: Dict[str, ItemData] = {
     "Refreshing Gourd":                     ItemData(110029, "Items", ItemClassification.filler, 1),
     "Sädekivi":                             ItemData(110030, "Items", ItemClassification.filler),
     "Broken Wand":                          ItemData(110031, "Items", ItemClassification.filler),
+    # pw_teleporter: 110032
+    "Gamma Spell":                          ItemData(110033, "Items", ItemClassification.useful, 1),
 }
 
 shop_only_filler_weights: Dict[str, int] = {

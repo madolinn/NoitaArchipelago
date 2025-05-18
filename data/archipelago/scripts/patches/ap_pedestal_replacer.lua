@@ -80,6 +80,7 @@ local function APPedestalReplacer()
 				EntityAddComponent(ap_pedestal_id, "LuaComponent", {
 					_tags="archipelago",
 					script_item_picked_up="data/archipelago/scripts/items/ap_pedestal_processed.lua",
+					script_death="data/archipelago/scripts/items/ap_pedestal_processed.lua",
 				})
 				if replaced_pedestal == "trapwand" then
 					EntityAddTag(ap_pedestal_id, "trap_wand")
@@ -87,6 +88,7 @@ local function APPedestalReplacer()
 						script_item_picked_up="data/archipelago/scripts/items/pedestal_trap_pickup.lua"
 					})
 				end
+				LoadBackgroundSprite("data/archipelago/biome_impl/ap_logo_background.png", x - 7, y - 7, 5)
 				return true
 			end
 		end

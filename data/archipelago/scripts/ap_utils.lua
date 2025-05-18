@@ -66,6 +66,15 @@ function spawn_potion(potion, x, y)
 	return potion_entity
 end
 
+function spawn_spell(spell, x, y)
+	-- if a position is not called, spawn it at the player
+	if x == nil or y == nil then
+		x, y = EntityGetTransform(get_player())
+	end
+
+	local spell_entity = CreateItemActionEntity(spell, random_offset(x, y))
+	return spell_entity
+end
 
 function add_items_to_inventory(items)
 	local player = get_players()[1]
@@ -344,6 +353,7 @@ function create_our_item_entity(item, x, y)
 			return perk_spawn(x, y, item.perk, true)
 		elseif item.items ~= nil and #item.items > 0 then
 			-- our item is something else (random choice)
+			SetRandomSeed(x, y)
 			local entity_id = EntityLoad(item.items[Random(1, #item.items)], x, y)
 			EntityAddTag(entity_id, "ap_item")
 			local life_comp = EntityGetFirstComponent(entity_id, "LifetimeComponent", "enabled_in_world")

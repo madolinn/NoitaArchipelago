@@ -6,7 +6,7 @@ local pos_x, pos_y = EntityGetTransform(entity_id)
 if EntityHasTag(entity_id, "tablet") then
 	-- Handle Tablet Forges.
 	local my_comps = EntityGetComponent( entity_id, "ItemComponent" )
-	local my_desc
+	local my_desc = ""
 	
 	if ( my_comps ~= nil ) then
 		for _,itemc in ipairs(my_comps) do
@@ -25,7 +25,7 @@ if EntityHasTag(entity_id, "tablet") then
 					local Globals = dofile("data/archipelago/scripts/globals.lua")
 
 					local location_id_offset = my_desc:gsub("[^%d]", "")
-					local location_id = AP.FIRST_TABLET_ID + location_id_offset -- There actually is a 0th book surprisingly. 
+					local location_id = AP.FIRST_TABLET_ID + location_id_offset -- There actually is a 0th book surprisingly.
 					GameAddFlagRun("ap" .. location_id)
 					Globals.LocationUnlockQueue:append(location_id)
 				end

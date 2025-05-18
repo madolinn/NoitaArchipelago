@@ -21,11 +21,20 @@ function death ( damage_type_bit_field, damage_message, entity_thats_responsible
 	
 		local entity_id = GetUpdatedEntityID()
 		local filename = EntityGetFilename(entity_id)
+
+		print(filename)
 	
 		filename:gsub("/([^/.]+).xml", function(name)
+			if name == "turret_left" then name = "turret_right" end -- Thanks Noita :(
+
 			local location_id = getLocationByAnimalName(name)
-			GameAddFlagRun("ap" .. location_id)
-			Globals.LocationUnlockQueue:append(location_id)
+			print(location_id)
+			if location_id ~= nil then
+				GameAddFlagRun("ap" .. location_id)
+				Globals.LocationUnlockQueue:append(location_id)
+			else
+				print("BAD FILENAME?:", filename, name)
+			end
 		end)
 	end
 end

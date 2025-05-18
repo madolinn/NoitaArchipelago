@@ -1,4 +1,4 @@
-
+print("Starting patching")
 -- TRANSLATIONS
 local TRANSLATIONS_FILE = "data/translations/common.csv"
 local translations = ModTextFileGetContent(TRANSLATIONS_FILE) .. ModTextFileGetContent("data/archipelago/translations.csv")
