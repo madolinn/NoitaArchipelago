@@ -15,6 +15,7 @@ local EnemyListAdjustments = {
 	-- Crystals
 	["snowcrystal"] = { 'data/entities/buildings/' },
 	["hpcrystal"] = { 'data/entities/buildings/' },
+	["ghost_crystal"] = { 'data/entities/buildings/' }, -- Houre override
 	
 	-- Illusions
 	["dark_alchemist"] = { 'data/entities/animals/illusions/' },

@@ -3,7 +3,7 @@ local nxml = dofile_once("data/archipelago/lib/nxml.lua")
 
 local ForgeList = {
 	"data/entities/items/books/base_book.xml",
-	"data/entities/misc/custom_cards/summon_portal_broken.xml",
+	"data/entities/items/pickup/summon_portal_broken.xml",
 	"data/entities/items/pickup/broken_wand.xml"
 }
 
