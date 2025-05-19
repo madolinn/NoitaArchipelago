@@ -1,4 +1,4 @@
-## Noita Archipelago
+## Noita Archipelago - (In)Sanity fork 
 A Noita mod to provide support for the Archipelago multiworld platform
 
 This mod takes hidden chests/hearts, pedestals, orbs, and boss drops and converts them into Archipelago checks.
