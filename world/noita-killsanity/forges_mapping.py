@@ -13,6 +13,7 @@ class ForgeLocation(NamedTuple):
     region: str
     flag: ForgeLocationFlag = 99
     ltype = "Forge"
+    mod: int = 0
 
 location_forge_mapping: Dict[str, ForgeLocation] = {
 	"Forge Emerald Tablet - Volume I": ForgeLocation(111900, "The Sky"), #Unforgeable

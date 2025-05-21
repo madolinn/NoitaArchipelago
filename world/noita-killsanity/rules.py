@@ -133,12 +133,18 @@ def biome_unlock_conditions(world: "NoitaWorld") -> None:
     lukki_entrances = world.multiworld.get_region("Lukki Lair", world.player).entrances
     magical_entrances = world.multiworld.get_region("Magical Temple", world.player).entrances
     wizard_entrances = world.multiworld.get_region("Wizards' Den", world.player).entrances
+    
     for entrance in lukki_entrances:
         entrance.access_rule = lambda state: state.has("Melee Immunity Perk", world.player) and\
                                              state.has("All-Seeing Eye Perk", world.player)
     for entrance in magical_entrances:
         entrance.access_rule = lambda state: state.has("All-Seeing Eye Perk", world.player)
     for entrance in wizard_entrances:
+        entrance.access_rule = lambda state: state.has("All-Seeing Eye Perk", world.player)
+
+    #Apotheosis
+    ant_nest = world.multiworld.get_region("Ant Nest", world.player).entrances
+    for entrance in ant_nest:
         entrance.access_rule = lambda state: state.has("All-Seeing Eye Perk", world.player)
 
 

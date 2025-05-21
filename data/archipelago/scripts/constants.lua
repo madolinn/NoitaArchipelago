@@ -42,6 +42,8 @@ return {
 	
 	-- IDs for animals
 	FIRST_ANIMAL_ID = 112000,
+	FIRST_APOTHEOSIS_ID = 112200,
+	FIRST_PROP_ID = 113000,
 
 	-- IDs for Forges
 	FORGE_WAND_ID = 111898,

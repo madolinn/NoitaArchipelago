@@ -16,6 +16,7 @@ class LocationData(NamedTuple):
     id: int
     flag: int = 0
     ltype: str = "Shop"
+    mod: int = 0
 
 
 class LocationFlag(IntEnum):
@@ -132,6 +133,7 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
         "Sauvojen Tuntija": LocationData(110650, LocationFlag.side_path, "Boss"),
         "Abyss Orb":        LocationData(110665, LocationFlag.main_path, "Orb"),
     },
+    "Lava Lake": {},
     "Below Lava Lake": {
         "Lava Lake Orb": LocationData(110661, LocationFlag.side_path, "Orb"),
     },
@@ -214,10 +216,33 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
     "Snowy Chasm": {},
     "The Work (Sky)": {},
     "Parallel Worlds": {},
-    
+    "Unsorted": {},
+
+    #Apotheosis
+    "Ant Nest": {},
+    "Sunken Cavern": {},
+    "Core Mines": {},
+    "Virulent Caverns": {},
+    "Sinkhole": {},
+    "Temple of Sacrilegious Remains": {},
 }
 
+def make_location_range(location_name: str, base_id: int, amt: int) -> Dict[str, int]:
+    if amt == 1:
+        return {location_name: base_id}
+    return {f"{location_name} {i+1}": base_id + i for i in range(amt)}
+
+location_name_groups: Dict[str, Set[str]] = {"Shop": set(), "Orb": set(), "Boss": set(), "Chest": set(),
+                                             "Pedestal": set(), "Kill": set(), "Forge": set()}
+location_name_to_id: Dict[str, int] = {}
+
 for animal_name, animal_data in animals_mapping.location_animal_mapping.items():
+    region_loc = animal_data.regions[0]
+    name = animal_data.names[0]
+    locname = "Kill " + name
+    location_region_mapping[region_loc][locname] = animal_data
+
+for animal_name, animal_data in animals_mapping.apotheosis_animal_mapping.items():
     region_loc = animal_data.regions[0]
     name = animal_data.names[0]
     locname = "Kill " + name
@@ -226,17 +251,6 @@ for animal_name, animal_data in animals_mapping.location_animal_mapping.items():
 for location_name, forge_data in forges_mapping.location_forge_mapping.items():
     region_loc = forge_data.region
     location_region_mapping[region_loc][location_name] = forge_data
-
-def make_location_range(location_name: str, base_id: int, amt: int) -> Dict[str, int]:
-    if amt == 1:
-        return {location_name: base_id}
-    return {f"{location_name} {i+1}": base_id + i for i in range(amt)}
-
-
-location_name_groups: Dict[str, Set[str]] = {"Shop": set(), "Orb": set(), "Boss": set(), "Chest": set(),
-                                             "Pedestal": set(), "Kill": set(), "Forge": set()}
-location_name_to_id: Dict[str, int] = {}
-
 
 for region_name, location_group in location_region_mapping.items():
     location_name_groups[region_name] = set()

@@ -44,7 +44,8 @@ class NoitaWorld(World):
     # Returned items will be sent over to the client
     def fill_slot_data(self) -> Dict[str, Any]:
         return self.options.as_dict("death_link", "victory_condition", "path_option", "hidden_chests",
-                                    "pedestal_checks", "orbs_as_checks", "bosses_as_checks", "animals_as_checks", "forges_as_checks", "extra_orbs", "shop_price")
+                                    "pedestal_checks", "orbs_as_checks", "bosses_as_checks", "animals_as_checks",
+                                    "forges_as_checks", "apotheosis_enabled", "extra_orbs", "shop_price")
 
     def create_regions(self) -> None:
         regions.create_all_regions_and_connections(self)

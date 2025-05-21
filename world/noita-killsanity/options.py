@@ -119,6 +119,12 @@ class ForgesAsChecks(Choice):
     default = 0
 
 
+class ApotheosisEnabled(Toggle):
+    """
+    Adds the Apotheosis Mod location checks
+    """
+    display_name = "Apotheosis Mod Support"
+
 # Note: the Sampo is an item that is picked up to trigger the boss fight at the normal ending location.
 # The sampo is required for every ending (having orbs and bringing the sampo to a different spot changes the ending).
 class VictoryCondition(Choice):
@@ -181,5 +187,6 @@ class NoitaOptions(PerGameCommonOptions):
     bosses_as_checks: BossesAsChecks
     animals_as_checks: AnimalsAsChecks
     forges_as_checks: ForgesAsChecks
+    apotheosis_enabled: ApotheosisEnabled
     extra_orbs: ExtraOrbs
     shop_price: ShopPrice

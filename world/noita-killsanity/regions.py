@@ -13,19 +13,24 @@ def create_locations(world: "NoitaWorld", region: Region) -> None:
     locs = locations.location_region_mapping.get(region.name, {})
     for location_name, location_data in locs.items():
         location_type = location_data.ltype
+        mod_type = location_data.mod
         flag = location_data.flag
 
         is_orb_allowed = location_type == "Orb" and flag <= world.options.orbs_as_checks
         is_boss_allowed = location_type == "Boss" and flag <= world.options.bosses_as_checks
         is_animal_allowed = location_type == "Kill" and flag <= world.options.animals_as_checks
         is_forge_allowed = location_type == "Forge" and flag <= world.options.forges_as_checks
+
+        is_mod_allowed = mod_type <= world.options.apotheosis_enabled
+
         amount = 0
-        if flag == locations.LocationFlag.none or is_orb_allowed or is_boss_allowed or is_animal_allowed or is_forge_allowed:
-            amount = 1
-        elif location_type == "Chest" and flag <= world.options.path_option:
-            amount = world.options.hidden_chests.value
-        elif location_type == "Pedestal" and flag <= world.options.path_option:
-            amount = world.options.pedestal_checks.value
+        if is_mod_allowed:
+            if flag == locations.LocationFlag.none or is_orb_allowed or is_boss_allowed or is_animal_allowed or is_forge_allowed:
+                amount = 1
+            elif location_type == "Chest" and flag <= world.options.path_option:
+                amount = world.options.hidden_chests.value
+            elif location_type == "Pedestal" and flag <= world.options.path_option:
+                amount = world.options.pedestal_checks.value
 
         region.add_locations(locations.make_location_range(location_name, location_data.id, amount),
                              locations.NoitaLocation)
@@ -39,6 +44,8 @@ def create_region(world: "NoitaWorld", region_name: str) -> Region:
 
 
 def create_regions(world: "NoitaWorld") -> Dict[str, Region]:
+    append_mod_connections(noita_connections)
+    noita_regions = sorted(set(noita_connections.keys()).union(*noita_connections.values()))
     return {name: create_region(world, name) for name in noita_regions}
 
 
@@ -64,6 +71,12 @@ def create_all_regions_and_connections(world: "NoitaWorld") -> None:
 
     world.multiworld.regions += created_regions.values()
 
+def append_mod_connections(connections) -> None:
+    for region_name, region_data in apotheosis_connections.items():
+        if region_name in connections:
+            connections[region_name] += region_data
+        else:
+            connections[region_name] = region_data
 
 # Oh, what a tangled web we weave
 # Notes to create artificial spheres:
@@ -115,8 +128,16 @@ noita_connections: Dict[str, List[str]] = {
 
     ###
     "Laboratory Holy Mountain": ["The Laboratory"],
-    "The Laboratory": ["The Work", "Friend Cave", "The Work (Hell)", "Lake", "The Sky"],
+    "The Laboratory": ["The Work", "Friend Cave", "The Work (Hell)", "Lake", "The Sky", "Unsorted"],
     ###
 }
 
-noita_regions: List[str] = sorted(set(noita_connections.keys()).union(*noita_connections.values()))
+apotheosis_connections: Dict[str, List[str]] = {
+    "Hiisi Base": ["Ant Nest"],
+    "Snowy Chasm": ["Sunken Cavern"],
+    "Ant Nest": ["Core Mines"],
+    "Power Plant": ["Virulent Caverns"],
+    "Virulent Caverns": ["Sinkhole", "Temple of Sacrilegious Remains"],
+}
+
+noita_regions: List[str] = {}

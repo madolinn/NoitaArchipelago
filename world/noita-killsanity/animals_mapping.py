@@ -9,12 +9,18 @@ class AnimalLocationFlag(IntEnum):
     pain = 4
     never = 99
 
+
+class ModFlag(IntEnum):
+    vanilla = 0
+    apotheosis = 1
+
 class AnimalLocation(NamedTuple):
     id: int
     names: list
     regions: list
     flag: AnimalLocationFlag = 99
     ltype = "Kill"
+    mod: ModFlag = 0
 
 location_animal_mapping: Dict[str, AnimalLocation] = {
     "player": AnimalLocation(112001, [ "Minä", "Me" ], [ "Forest" ], AnimalLocationFlag.main_path),
@@ -201,5 +207,153 @@ location_animal_mapping: Dict[str, AnimalLocation] = {
     "friend": AnimalLocation(112182, [ "Toveri", "Friend" ], [ "Friend Cave" ], AnimalLocationFlag.never ),
     "boss_sky": AnimalLocation(112183, [ "Kivi", "Stone" ], [ "The Sky" ], AnimalLocationFlag.never ),
     "darkghost": AnimalLocation(112184, [ "Haamu", "Wraith" ], [ "Forest" ], AnimalLocationFlag.never ),
-    "meatmaggot": AnimalLocation(112185, [ "Mätäryömijä", "Putrid Crawler" ], [ "Meat Realm" ], AnimalLocationFlag.pain )
+    "meatmaggot": AnimalLocation(112185, [ "Mätäryömijä", "Putrid Crawler" ], [ "Meat Realm" ], AnimalLocationFlag.pain ),
+
+    ## Prop start
+    "crystal_green": AnimalLocation(113001, [ "Green Crystal", "Green Crystal" ], [ "Temple of the Art" ], AnimalLocationFlag.main_path ),
+    "crystal_pink": AnimalLocation(113002, [ "Pink Crystal", "Pink Crystal" ], [ "Temple of the Art" ], AnimalLocationFlag.main_path ),
+    "crystal_red": AnimalLocation(113003, [ "Red Crystal", "Red Crystal" ], [ "Temple of the Art" ], AnimalLocationFlag.main_path ),
+    #"forcefield_generator": AnimalLocation(113004, [ "Forcefield Generator", "Forcefield Generator" ], [ "Hiisi Base" ], AnimalLocationFlag.main_path ),
+    #"barrel_unstable": AnimalLocation(113005, [ "Oil Barrel", "Oil Barrel" ], [ "Mines" ], AnimalLocationFlag.main_path ),
+    #"barrel_radioactive": AnimalLocation(113006, [ "Toxic Barrel", "Toxic Barrel" ], [ "Mines" ], AnimalLocationFlag.main_path ),
+    #"tnt": AnimalLocation(113007, [ "Explosive Box", "Explosive Box" ], [ "Mines" ], AnimalLocationFlag.main_path ),
+    #"crate": AnimalLocation(113008, [ "Gunpowder Crate", "Gunpowder Crate" ], [ "Hiisi Base" ], AnimalLocationFlag.main_path ),
+    #"pressure_tank": AnimalLocation(113009, [ "Pressure Tank", "Pressure Tank" ], [ "The Vault" ], AnimalLocationFlag.main_path ),
+    #"propane_tank": AnimalLocation(113010, [ "Propane Tank", "Propane Tank" ], [ "Snowy Depths" ], AnimalLocationFlag.main_path ),
+    #"seamine": AnimalLocation(113011, [ "Sea Mine", "Sea Mine" ], [ "Coal Pits" ], AnimalLocationFlag.main_path ),
+    #"apparatus_01": AnimalLocation(113012, [ "Vault Apparatus (Hot)", "Vault Apparatus (Hot)" ], [ "The Vault" ], AnimalLocationFlag.main_path ),
+    #"apparatus_02": AnimalLocation(113013, [ "Vault Apparatus (Cold)", "Vault Apparatus (Cold)" ], [ "The Vault" ], AnimalLocationFlag.main_path ),
+    "physics_cocoon": AnimalLocation(113014, [ "Worm Cocoon", "Worm Cocoon" ], [ "Underground Jungle" ], AnimalLocationFlag.main_path ),
+    "lukki_eggs": AnimalLocation(113015, [ "Lukki Eggs", "Lukki Eggs" ], [ "Underground Jungle" ], AnimalLocationFlag.main_path ),
+}
+
+apotheosis_animal_mapping: Dict[str, AnimalLocation] = {
+    "cat_mocreeps": AnimalLocation(112201, [ "Kissa", "Cat" ], [ "Forest" ], AnimalLocationFlag.main_path, ModFlag.apotheosis), # No kill catto, only pet!
+    "bubble_liquid": AnimalLocation(112202, [ "Nestemäinen kupla", "Liquid Bubble" ], [ "Coal Pits", "The Vault", "Fungal Caverns" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "hiisi_thief": AnimalLocation(112203, [ "Varashiisi", "Thief Hiisi" ], [ "Mines", "Coal Pits", "Snowy Depths", "Fungal Caverns", "Ant Nest" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "hisii_minecart": AnimalLocation(112204, [ "Kaivoskärryhaulikkohiisi", "Minecart Hiisi" ], [ "Mines", "Coal Pits" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "hisii_minecart_tnt": AnimalLocation(112205, [ "Kaivoskärrytappurahaulikkohiisi", "Minecart Miner Hiisi" ], [ "Mines", "Coal Pits" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "hisii_giga_bomb": AnimalLocation(112206, [ "Psykopaattihiisi", "Giga Bomb Hiisi" ], [ "Mines" ], AnimalLocationFlag.never, ModFlag.apotheosis), #Part of a random set piece
+    "hisii_engineer": AnimalLocation(112207, [ "Insinöörihiisi", "Hiisi Engineer" ], [ "Snowy Depths", "Hiisi Base", "Frozen Vault", "The Vault" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "hisii_rocketshotgun": AnimalLocation(112208, [ "Rakettihaulikkohiisi", "Rocket Shotgun Hiisi" ], [ "Underground Jungle", "The Vault", "Frozen Vault" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "hisii_hobo": AnimalLocation(112209, [ "Koditonhiisi", "Hiisi Hobo" ], [ "Forest", "Hisii Base", "The Vault", "Frozen Vault", "Lake" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "hisii_hobo_rich": AnimalLocation(112210, [ "Rikashiisi", "Rich Hiisi" ], [ "Unsorted" ], AnimalLocationFlag.never, ModFlag.apotheosis), #???
+    "shaman_greater_apotheosis": AnimalLocation(112211, [ "Suur-Märkiäinen", "Greater Swampling" ], [ "Fungal Caverns", "Overgrown Cavern" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "blindgazer": AnimalLocation(112212, [ "Sokeakatselija", "Blind Gazer" ], [ "The Vault", "Frozen Vault" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "slime_leaker_weak": AnimalLocation(112213, [ "Heikko Vuotavajaska", "Weak Leaking Slime" ], [ "Mines" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "slime_leaker": AnimalLocation(112214, [ "Vuotavajaska", "Leaking Slime" ], [ "Coal Pits", "The Vault" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "slime_teleporter": AnimalLocation(112215, [ "Säröilevä limanuljaska", "Warping Slime" ], [ "Unsorted" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "goo_slug": AnimalLocation(112216, [ "Liimanetana", "Glue Slug" ], [ "Mines", "Coal Pits", "The Vault" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "poring": AnimalLocation(112217, [ "Hyytelö", "Jelly" ], [ "Mines", "Coal Pits", "Desert", "Sandcave" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "poring_lukki": AnimalLocation(112218, [ "Lukkihyytelö", "Jelly Longlegs" ], [ "Unsorted" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "poring_magic": AnimalLocation(112219, [ "Lumottuhyytelö", "Magic Jelly" ], [ "Temple of the Art", "Wizards' Den", "Pyramid", "Magical Temple" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "poring_devil": AnimalLocation(112220, [ "Epäpyhähyytelö", "Unholy Jelly" ], [ "The Work (Hell)" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "poring_holy": AnimalLocation(112221, [ "Jumalallinenhyytelö", "Divine Jelly" ], [ "The Work (Sky)" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "poring_holy_arch": AnimalLocation(112222, [ "Korkeajumalallinenhyytelö", "High Divine Jelly" ], [ "The Work (Sky)" ], AnimalLocationFlag.pain, ModFlag.apotheosis), #Miniboss
+    "blob_big": AnimalLocation(112223, [ "Isomöykky", "Big Blob" ], [ "The Vault", "Fungal Caverns", "Overgrown Cavern" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "blob_huge": AnimalLocation(112224, [ "Kammottavamöykky", "Creepy Blob" ], [ "Overgrown Cavern" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "ant_fire": AnimalLocation(112225, [ "Tulimurkku", "Fire Ant" ], [ "Ant Nest" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "ant_suffocate": AnimalLocation(112226, [ "Tukahduttajamurkku", "Suffocating Ant" ], [ "Ant Nest" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "ant_pheromone": AnimalLocation(112227, [ "Sairaanhoitajamurkku", "Nursing Ant" ], [ "Ant Nest" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "rat_birthday": AnimalLocation(112228, [ "Juhlarotta", "Birthday Rat" ], [ "Forest" ], AnimalLocationFlag.never, ModFlag.apotheosis), #Event
+    "ccc_bat_psychic": AnimalLocation(112229, [ "Psyykkinenlepakko", "Psychic Bat" ], [ "Coal Pits" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "mudman_friendly": AnimalLocation(112230, [ "Mutamies", "Mudman" ], [ "Coal Pits" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "ceiling_fungus": AnimalLocation(112231, [ "Kattosieni", "Ceiling Fungus" ], [ "Fungal Caverns", "Overgrown Cavern" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    #fungus_tiny [ "Fungal Caverns", "Overgrown Cavern" ], AnimalLocationFlag.side_path, ModFlag.apotheosis)
+    "poisonmushroom": AnimalLocation(112232, [ "Myrkyllinensieni", "Poisonous Mushroom" ], [ "Underground Jungle", "Lukki Lair", "Overgrown Cavern" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "fungus_smoking_creep": AnimalLocation(112233, [ "Savuavasieni", "Smoking Fungus" ], [ "Overgrown Cavern" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "lukki_fungus": AnimalLocation(112234, [ "Revitty sieni", "Uprooted Fungus" ], [ "Fungal Caverns", "Overgrown Cavern" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "hideous_mass": AnimalLocation(112235, [ "Hirvittävämassa", "Hideous Mass" ], [ "Temple of the Art", "Pyramid" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "tentacler_big": AnimalLocation(112236, [ "Isoturso", "Big Tentacler" ], [ "The Vault", "Fungal Caverns", "Overgrown Cavern", "Temple of the Art" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "longleg_pillar": AnimalLocation(112237, [ "Kohoava Pilari-hämis", "Towering Pillar of Hamis" ], [ "Forest" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "lukki_swarmling": AnimalLocation(112238, [ "Nopealukki", "Swarmling Lukki" ], [ "Lukki Lair" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "sunken_creature": AnimalLocation(112239, [ "Sukelluskello", "Diving Bell" ], [ "Sunken Cavern" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "lukki_fire_tiny": AnimalLocation(112240, [ "Pikku Tulihämähäkki", "Tiny Fire Spider" ], [ "Core Mines" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "lukki_fire_miniboss": AnimalLocation(112241, [ "Nuori Tulihämähäkki", "Juvenile Fire Spider" ], [ "Core Mines" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "giant_centipede": AnimalLocation(112242, [ "Nuori Tuhatjalkainen", "Juvenile Centipede" ], [ "Underground Jungle" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "locust_swarm": AnimalLocation(112243, [ "Heinäsirkka", "Locust Swarm" ], [ "Underground Jungle", "Pyramid", "Desert" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "devourer_magic": AnimalLocation(112244, [ "Taikainen syöjä", "Magic Devourer" ], [ "Underground Jungle", "Sandcave", "Snowy Chasm", "Temple of the Art", "Pyramid", "Ancient Laboratory" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "seeker": AnimalLocation(112245, [ "Etsijä", "Seeker" ], [ "Power Plant" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "miniboss_pit_02": AnimalLocation(112246, [ "Wandsin Arvostelija", "Appreciator of Wands" ], [ "Sunken Cavern", "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "star_child": AnimalLocation(112247, [ "Tähtilapsi", "Star Child" ], [ "Temple of the Art", "The Work (Sky)" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "worm_wall": AnimalLocation(112248, [ "Seinätoukka", "Wall Worm" ], [ "The Laboratory" ], AnimalLocationFlag.pain, ModFlag.apotheosis), #Technically spawns everywhere inside deep rock.
+    "worm_maggot_big": AnimalLocation(112249, [ "Pieni Limatoukka", "Small Slimy Maggot" ], [ "Meat Realm" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "worm_end_big_apotheosis": AnimalLocation(112250, [ "Suur-Helvetinmato", "Greater Hell Worm" ], [ "The Work (Hell)" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "worm_mechanical": AnimalLocation(112251, [ "Mekaaninenmato", "Mechanical Worm" ], [ "The Vault" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "worm_spine": AnimalLocation(112252, [ "Kirottuselkäranka", "Cursed Spine" ], [ "Temple of Sacrilegious Remains"  ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "drone_status_ailment": AnimalLocation(112253, [ "Parannuskeinolennokki", "Ailment Drone" ], [ "The Vault", "Fungal Caverns", "Frozen Vault" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "drone_mini": AnimalLocation(112254, [ "Pieni Lennokki", "Mini Drone" ], [ "Hiisi Base", "The Vault", "Frozen Vault", "Power Plant" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "gazer_robot": AnimalLocation(112255, [ "Aluebotti", "Zoner" ], [ "Power Plant" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "tesla_turret": AnimalLocation(112256, [ "Teslatötterö", "Tesla Turret" ], [ "Hiisi Base", "Snowy Depths", "Desert", "Power Plant" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "c_basebot_speeder_apotheosis": AnimalLocation(112257, [ "Johtaja", "Manager" ], [ "Power Plant" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "tank_flame_apotheosis": AnimalLocation(112258, [ "Sytytystankki", "Ignition Tank" ], [ "Hiisi Base", "The Vault", "Frozen Vault" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "waterskull": AnimalLocation(112259, [ "Vesiö", "Water Spirit" ], [ "Ant Nest", "Forest" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "wizard_firemage_greater": AnimalLocation(112260, [ "Suur-Stendari", "Greater Fire Mage" ], [ "Wizards' Den", "The Works (Hell)" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "watermage": AnimalLocation(112261, [ "Vesimagi", "Water Mage" ], [ "Mines", "Temple of the Art", "Sunken Cavern" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "watermage_greater": AnimalLocation(112262, [ "Suur-Vesimagi", "Greater Water Mage" ], [ "Sunken Cavern" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "barfer_greater_apotheosis": AnimalLocation(112263, [ "Suur-Turvonnu velho", "Greater Barfer" ], [ "Unsorted" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "wizard_ambrosia": AnimalLocation(112264, [ "Kuolemattomuudenmestari", "Master of Immortality" ], [ "Wizards' Den" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "wizard_copeseethmald": AnimalLocation(112265, [ "Uistelunmestari", "Master of Trolling" ], [ "Desert Chasm", "Fungal Caverns" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "wizard_duck": AnimalLocation(112266, [ "Sinisorsienmestari", "Master of Mallards" ], [ "Temple of the Art", "Wizards' Den", "Ancient Laboratory" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "enchanted_duck": AnimalLocation(112267, [ "Lumottu ankka", "Enchanted Duck" ], [ "Temple of the Art", "Wizards' Den", "Ancient Laboratory" ], AnimalLocationFlag.never, ModFlag.apotheosis), # Spawn of Wizard Duck
+    "wizard_explosive": AnimalLocation(112268, [ "Räjähteidenmestari", "Master of Explosives" ], [ "Wizards' Den" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "wizard_jackofalltrades": AnimalLocation(112269, [ "Eimitäänmestari", "Master of None" ], [ "The Vault", "Wizards' Den", "Underground Jungle", "Lukki lair" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "wizard_manaeater": AnimalLocation(112270, [ "Mananmestari", "Master of Mana" ], [ "Temple of the Art", "Wizards' Den", "Pyramid", "Ancient Laboratory", "Magical Temple" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "wizard_transmutation": AnimalLocation(112271, [ "Transmutaatioidenmestari", "Master of Transmutation" ], [ "The Vault", "Wizards' Den", "Lukki lair", "Overgrown Cavern",  ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "wizard_z_poly_miniboss": AnimalLocation(112272, [ "Yli-innokas Muudonmuutosmestari", "Overzealous Master of Polymorphing" ], [ "Wizards' Den", "Temple of the Art" ], AnimalLocationFlag.pain, ModFlag.apotheosis), #Miniboss
+    "wizard_corrupt_wands": AnimalLocation(112273, [ "Nukketeatterinmestari", "Master of Puppets" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wizard_corrupt_ambrosia": AnimalLocation(112274, [ "Korruptoitunut Kuolemattomuudenmestari", "Corrupt Master of Immortality" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wizard_corrupt_returner": AnimalLocation(112275, [ "Korruptoitunut Palauttajamestari", "Corrupt Master of Returning" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wizard_corrupt_hearty": AnimalLocation(112276, [ "Korruptoitunut Haavoittajamestari", "Corrupt Master of Wounding" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wizard_corrupt_manaeater": AnimalLocation(112277, [ "Korruptoitunut Mananmestari", "Corrupt Master of Mana" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wizard_corrupt_neutral": AnimalLocation(112278, [ "Korruptoitunut Maadoittajamestari", "Corrupt Master of Grounding" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wizard_corrupt_swapper": AnimalLocation(112279, [ "Korruptoitunut Vaihdosmestari", "Corrupt Master of Exchange" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wizard_corrupt_teleport": AnimalLocation(112280, [ "Korruptoitunut Siirtäjämestari", "Corrupt Master of Teleportation" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wizard_corrupt_twitchy": AnimalLocation(112281, [ "Korruptoitunut Sätkymestari", "Corrupt Master of Twitching" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wizard_corrupt_weaken": AnimalLocation(112282, [ "Korruptoitunut Turvattomuusmestari", "Corrupt Master of Vulnerability" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "lukki_tentacle_hungry": AnimalLocation(112283, [ "Kirottuolento", "Cursed Being" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "flesh_wizard_wands": AnimalLocation(112284, [ "Kirottu Nukketaiteilija", "Cursed Puppeteer" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "flesh_wizard_manaeater": AnimalLocation(112285, [ "Kirottu Manavampyyri", "Cursed Manasapper" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "flesh_wizard_neutral": AnimalLocation(112286, [ "Kirottu Neutraloija", "Cursed Grounder" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "flesh_wizard_swapper": AnimalLocation(112287, [ "Kirottu Korvaaja", "Cursed Swapper" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "flesh_wizard_twitchy": AnimalLocation(112288, [ "Kirottu Sätkijä", "Cursed Twitcher" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "wraith_weirdo_shield": AnimalLocation(112289, [ "Härö", "Weirdo" ], [ "Temple of the Art", "The Vault", "Sandcave" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "wraith_returner_apotheosis": AnimalLocation(112290, [ "Heijastava Härö", "Reflective Weirdo" ], [ "Temple of the Art", "Pyramid", "The Work (Sky)" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "wraith_alchemy_apotheosis": AnimalLocation(112291, [ "Alkeeminen Härö", "Alchemic Weirdo" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "whisp": AnimalLocation(112292, [ "Virvatuli", "Will o' the whisp" ], [ "Coal Pits", "Core Mines", "Sandcave" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "whisp_big": AnimalLocation(112293, [ "Jättivirvatuli", "Giant Will o' the whisp" ], [ "Core Mines", "The Tower" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "whisp_giga": AnimalLocation(112294, [ "Kolossaalinenvirvatuli", "Colossal Will o' the whisp" ], [ "Unsorted" ], AnimalLocationFlag.never, ModFlag.apotheosis), #Secret?
+    "fairy_cheap": AnimalLocation(112295, [ "Keiju", "Fairy" ], [ "Mines", "Coal Pits", "Underground Jungle" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "fairy_big": AnimalLocation(112296, [ "Jättikeiju", "Giant Fairy" ], [ "Coal Pits", "Underground Jungle" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "fairy_giant": AnimalLocation(112297, [ "Kolossaalinenkeiju", "Colossal Fairy" ], [ "Unsorted" ], AnimalLocationFlag.never, ModFlag.apotheosis), #Secret?
+    "fairy_big_discord": AnimalLocation(112298, [ "Jättiristiriitakeiju", "Giant Discord Fairy" ], [ "Temple of the Art", "The Work (Sky)", "Sandcave" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "fairy_esoteric": AnimalLocation(112299, [ "Esoteerinenpäiväuni", "Esoteric Fairy" ], [ "Temple of the Art" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "esoteric_being": AnimalLocation(112300, [ "Esoteerinenolento", "Esoteric Being" ], [ "Temple of the Art", "Magical Temple" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "worm_esoteric": AnimalLocation(112301, [ "Esoteerinenmato", "Esoteric Worm" ], [ "Unsorted" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "musical_being": AnimalLocation(112302, [ "Kuulumaton", "Unheard" ], [ "Pyramid", "Snowy Chasm", "Sandcave" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "musical_being_weak": AnimalLocation(112303, [ "Hiljainen", "Quiet" ], [ "Snowy Chasm" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "phantom_c_apotheosis": AnimalLocation(112304, [ "Pakkomielteinenkalma", "Obsessive Phantom" ], [ "Unsorted" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "devourer_ghost": AnimalLocation(112305, [ "Nälkäinenaave", "Devouring Phantom" ], [ "Temple of the Art", "Magical Temple", "Pyramid" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "ghost_bow": AnimalLocation(112306, [ "Haamujousi", "Phantom Bow" ], [ "Magical Temple" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "forsaken_eye": AnimalLocation(112307, [ "Hylättysilmä", "Forsaken Eye" ], [ "Snowy Depths", "Snowy Chasm", "Wizards' Den" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "spirit_healing": AnimalLocation(112308, [ "Parantava-Aave", "Healing Spirit" ], [ "Pyramid", "Coal Pits" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "gazer_greater": AnimalLocation(112309, [ "Suur-Helvetinkatse", "Greater Hell Gazer" ], [ "The Work (Hell)" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "gazer_greater_sky": AnimalLocation(112310, [ "Suur-Taivaankatse", "Greater Sky Gazer" ], [ "The Work (Sky)" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
+    "gazer_cold_apotheosis": AnimalLocation(112311, [ "Jäänkatse", "Cold Gazer" ], [ "Snowy Depths", "Snowy Chasm" ], AnimalLocationFlag.side_path, ModFlag.apotheosis),
+    "gazer_greater_cold": AnimalLocation(112312, [ "Suur-Jäänkatse", "Greater Cold Gazer" ], [ "Snowy Depths", "Snowy Chasm" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "gazer_parasitic": AnimalLocation(112313, [ "Parasiittinenkatse", "Parasitic Gazer" ], [ "Virulent Caverns" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "sentry": AnimalLocation(112314, [ "Vartiomies", "Sentry" ], [ "The Vault", "The Work (Hell)", "Frozen Vault", "Snowy Depths" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "triangle_gem": AnimalLocation(112315, [ "Kolmionmuotoinenkristalli", "Triangular Gem" ], [ "Temple of the Art", "Sandcave" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "mimic_explosive_box": AnimalLocation(112316, [ "Räjähdysherkkämatkija", "Explosive Box Mimic" ], [ "Mines", "Coal Pits", "The Vault", "Hiisi Base" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "snowman": AnimalLocation(112317, [ "Lumiukko", "Snowman" ], [ "Snowy Depths" ], AnimalLocationFlag.never, ModFlag.apotheosis), #Event enemy
+    "mimic_perk_twwe": AnimalLocation(112318, [ "Paskiainen", "Tinker With Wands Everywhere Mimic" ], [ "Coal Pits" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "hiisi_chef_hell": AnimalLocation(112319, [ "Hornakokkihiisi", "Hell Chef" ], [ "The Work (Hell)" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "boss_toxic_worm_parallel": AnimalLocation(112320, [ "Madon Muisti", "Worm Memory" ], [ "Coal Pits" ], AnimalLocationFlag.reasonable, ModFlag.apotheosis),
+    "boss_toxic_worm": AnimalLocation(112321, [ "Jättimäinenmyrkkymato", "Giant Toxic Worm" ], [ "Coal Pits" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "boss_toxic_worm_minion": AnimalLocation(112322, [ "Myrkyllinenmato", "Toxic Worm" ], [ "Coal Pits" ], AnimalLocationFlag.never, ModFlag.apotheosis), #Spawned by boss man
+    "boss_musical_ghost": AnimalLocation(112323, [ "Hylättyorkesteri", "Abandoned Orchestra" ], [ "Sandcave" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "blob_titan": AnimalLocation(112324, [ "Kolossaalimöykky", "Colossal Blob" ], [ "Overgrown Cavern" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "boss_fire_lukki": AnimalLocation(112325, [ "Tulen Esteetikko", "Aesthete of Heat" ], [ "Lava Lake" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "boss_flesh_monster": AnimalLocation(112326, [ "Kerettiläinenhirviö", "Heretical Monster" ], [ "Temple of Sacrilegious Remains" ], AnimalLocationFlag.never, ModFlag.apotheosis),
+    "forest_monolith": AnimalLocation(112327, [ "Monoliitti", "Monolith" ], [ "Forest" ], AnimalLocationFlag.never, ModFlag.apotheosis),
 }
