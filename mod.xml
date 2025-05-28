@@ -1,7 +1,7 @@
 <!-- https://noita.wiki.gg/wiki/Modding:_mod.xml -->
 <Mod
-	name="Archipelago"
+	name="Archipelago (Killsanity)"
 	description="Archipelago multiworld support for Noita"
 	request_no_api_restrictions="1"
-	download_link="https://github.com/DaftBrit/NoitaArchipelago/releases/latest"
+	download_link="https://github.com/madolinn/NoitaArchipelago/releases/latest"
 />
