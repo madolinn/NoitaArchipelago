@@ -4,6 +4,7 @@ local vanillaPatchEntities = {
 	-- Base Entities
 	'data/entities/base_humanoid.xml',
 	'data/entities/base_helpless_animal.xml',
+	'data/entities/player_base.xml',
 
 	'data/entities/base_item_physics.xml',
 	'data/entities/base_item_physics2.xml',
@@ -60,9 +61,6 @@ local vanillaPatchEntities = {
 	'data/entities/animals/lukki/lukki_creepy.xml',
 
 	-- Prop hunt
-	'data/entities/props/physics_barrel_oil.xml',
-	'data/entities/props/physics_box_explosive.xml',
-	'data/entities/props/physics_barrel_radioactive.xml',
 	'data/entities/props/suspended_tank_acid.xml',
 	'data/entities/props/suspended_tank_radioactive.xml',
 	'data/entities/props/physics/lantern_small.xml',
@@ -119,6 +117,10 @@ local apotheosisPatchEntities = {
 	'data/entities/animals/boss_meat/boss_meat.xml',
 }
 
+local onRemovePatchEntities = {
+	'data/entities/buildings/physics_cocoon.xml',
+}
+
 function APAddDeathComponent()
 	for _, path in ipairs(vanillaPatchEntities) do
 		local content = ModTextFileGetContent(path)
@@ -145,6 +147,25 @@ function APAddDeathComponent()
 			end
 		end
 	end
+
+	for _, path in ipairs(onRemovePatchEntities) do
+		local content = ModTextFileGetContent(path)
+		if content ~= nil then
+			local xml = nxml.parse(content)
+			xml:add_child(nxml.parse([[
+				<LuaComponent
+					_enabled="1"
+					script_death="data/archipelago/scripts/ap_death_component.lua"
+					script_source_file="data/archipelago/scripts/ap_death_component.lua"
+					execute_on_removed="1"
+					execute_every_n_frame="-1">
+				</LuaComponent>]]))
+			ModTextFileSetContent(path, tostring(xml))
+		else
+			print("UH OH:" .. path)
+		end
+	end
+	
 end
 
 APAddDeathComponent()

@@ -1,6 +1,10 @@
 dofile_once("data/archipelago/scripts/ap_utils.lua")
 
 function death ( damage_type_bit_field, damage_message, entity_thats_responsible, drop_items, ... )
+	APCheck(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
+end
+
+function APCheck( damage_type_bit_field, damage_message, entity_thats_responsible, drop_items )
 	local need_credit = GlobalsGetValue("ap_animals_need_credit")
 
 	local flag = false
@@ -19,9 +23,6 @@ function death ( damage_type_bit_field, damage_message, entity_thats_responsible
 		local entity_id = GetUpdatedEntityID()
 		local filename = EntityGetFilename(entity_id)
 
-		print("[KILLED] " .. filename)
-		return
-
 		filename:gsub("/([^/.]+).xml", function(name)
 			if name == "turret_left" then name = "turret_right" -- Thanks Noita :(
 			elseif name == "suspended_seamine" then name = "seamine" end
@@ -37,9 +38,9 @@ function death ( damage_type_bit_field, damage_message, entity_thats_responsible
 				print(name .. ":" .. location_id)
 				GameAddFlagRun("ap" .. location_id)
 				Globals.LocationUnlockQueue:append(location_id)
-			else
-				print("KILLSANITY CANDIDATE:", filename, name)
 			end
 		end)
 	end
 end
+
+APCheck(0, "FORCED_SELF_DEATH", nil, nil)
