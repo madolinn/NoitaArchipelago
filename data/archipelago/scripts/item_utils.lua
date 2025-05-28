@@ -1,4 +1,5 @@
 dofile_once("data/archipelago/scripts/ap_utils.lua")
+dofile_once("data/archipelago/scripts/newgame_spawner.lua")
 
 local item_table = dofile("data/archipelago/scripts/item_mappings.lua")
 local AP = dofile("data/archipelago/scripts/constants.lua")
@@ -94,10 +95,6 @@ function NGSpawnItems(item_counts)
 	local rand_y = rand_x * 2
 	SeedRandom(rand_x, rand_y)
 	
-	local itemx = 595
-	local itemy = -90
-	local wandx = 600
-	local wandy = -120
 	-- check how many hearts and orbs are on the list, increase your health, then remove them from the list
 	-- note that health increases are in increments of 25
 	if item_counts[AP.HEART_ITEM_ID] ~= nil or item_counts[AP.ORB_ITEM_ID] ~= nil then
@@ -109,63 +106,7 @@ function NGSpawnItems(item_counts)
 		item_counts[AP.ORB_ITEM_ID] = nil
 	end
 
-	for item, quantity in pairs(item_counts) do
-		print("SPAWNING:" .. item)
-		if item_table[item].wand ~= nil then
-			-- spawn the wands in an array inside the cave
-			for _ = 1, quantity do
-				local item_to_spawn = item_table[item].items[Random(1, #item_table[item].items)]
-				EntityLoad(item_to_spawn, wandx, wandy)
-				wandx = wandx + 20
-				if wandx >= 800 then
-					wandx = 600
-					wandy = wandy -10
-				end
-			end
-			item_counts[item] = nil
-		elseif item_table[item].spells ~= nil then
-			-- spawn the spells in an array inside the cave
-			for _ = 1, quantity do
-				local item_to_spawn = item_table[item].spells[Random(1, #item_table[item].spells)]
-				CreateItemActionEntity(item_to_spawn, itemx, itemy)
-				itemx = itemx + 20
-				if itemx >= 800 then
-					itemx = 600
-					itemy = itemy -10
-				end
-			end
-			item_counts[item] = nil
-		elseif item == AP.MAP_PERK_ID then
-			-- spawn the map perk on the ground, in case you find it distracting
-			perk_spawn(813, -96, item_table[item].perk)
-			item_counts[item] = nil
-			
-		elseif item_table[item].perk ~= nil then
-			-- give the player their perks
-			for _ = 1, quantity do
-				give_perk(item_table[item].perk)
-			end
-			item_table[item] = nil
-		elseif item ~= AP.TRAP_ID then
-			-- spawn the rest of the items on the cave floor
-			for _ = 1, quantity do
-				if #item_table[item].items > 0 then
-					local item_to_spawn = item_table[item].items[Random(1, #item_table[item].items)]
-					EntityLoad(item_to_spawn, itemx, itemy)
-					itemx = itemx + 15
-					-- skip the minecart
-					if itemx > 662 and itemx < 692 then
-						itemx = itemx + 30
-					end
-					-- loop back around, but slightly offset
-					if itemx >= 800 then
-						itemx = itemx - 205
-					end
-				end
-			end
-			item_counts[item] = nil
-		end
-	end
+	APEggStartSpawn(item_counts)
 end
 
 
