@@ -3,7 +3,7 @@ from collections import Counter
 from typing import Dict, List, NamedTuple, Set, TYPE_CHECKING
 
 from BaseClasses import Item, ItemClassification
-from .options import BossesAsChecks, VictoryCondition, ExtraOrbs
+from .options import BossesAsChecks, VictoryCondition, ExtraOrbs, BossSoulsAsItems
 
 if TYPE_CHECKING:
     from . import NoitaWorld
@@ -41,6 +41,20 @@ def create_orb_items(victory_condition: VictoryCondition, extra_orbs: ExtraOrbs)
     return ["Orb" for _ in range(orb_count)]
 
 
+def create_boss_souls_items(world: NoitaWorld, boss_souls: BossSoulsAsItems) -> List[str]:
+    soul_list = []
+    if boss_souls == BossSoulsAsItems.option_check_bosses:
+        world_locations = list(map(lambda loc: loc.name, world.get_locations()))
+        soul_items = item_name_groups["Boss Souls"]
+        for item in soul_items:
+            soul_name = item.replace("Soul of ", "")
+            if soul_name in world_locations:
+                soul_list.append(item)
+    elif boss_souls == BossSoulsAsItems.option_all_bosses:
+        soul_list = list(item_name_groups["Boss Souls"])
+    return soul_list
+
+
 def create_spatial_awareness_item(bosses_as_checks: BossesAsChecks) -> List[str]:
     return ["Spatial Awareness Perk"] if bosses_as_checks.value >= BossesAsChecks.option_all_bosses else []
 
@@ -69,6 +83,7 @@ def create_all_items(world: NoitaWorld) -> None:
         + create_orb_items(world.options.victory_condition, world.options.extra_orbs)
         + create_spatial_awareness_item(world.options.bosses_as_checks)
         + create_kantele(world.options.victory_condition)
+        + create_boss_souls_items(world, world.options.boss_souls)
     )
 
     # if there's not enough shop-allowed items in the pool, we can encounter gen issues
@@ -122,6 +137,29 @@ item_table: Dict[str, ItemData] = {
     "Broken Wand":                          ItemData(110031, "Items", ItemClassification.filler),
     # pw_teleporter: 110032
     "Gamma Spell":                          ItemData(110033, "Items", ItemClassification.useful, 1),
+
+    "Soul of Suomuhauki":                   ItemData(110161, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Kolmisilmän Koipi":            ItemData(110162, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Kolmisilmän sydän":            ItemData(110163, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Ylialkemisti":                 ItemData(110164, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Alkemistin Varjo":             ItemData(110165, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Unohdettu":                    ItemData(110166, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Häive":                        ItemData(110167, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Tapion vasalli":               ItemData(110168, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Sauvojen tuntija":             ItemData(110169, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Kolmisilmän silmä":            ItemData(110170, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Syväolento":                   ItemData(110171, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Limatoukka":                   ItemData(110172, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Kolmisilmän Kätyri":           ItemData(110173, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Gate Guardian":                ItemData(110174, "Boss Souls", ItemClassification.progression_skip_balancing),
+    # Guardian B
+    # Guardian C
+    # Guardian D
+    "Soul of Mestarien mestari":            ItemData(110178, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Kolmisilmä":                   ItemData(110179, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Kauhuhirviö":                  ItemData(110180, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Toveri":                       ItemData(110181, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Kivi":                         ItemData(110182, "Boss Souls", ItemClassification.progression_skip_balancing),
 }
 
 shop_only_filler_weights: Dict[str, int] = {

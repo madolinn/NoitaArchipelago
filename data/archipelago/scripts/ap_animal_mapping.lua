@@ -337,10 +337,37 @@ function mapFromList()
 		"boss_flesh_monster",
 		"forest_monolith",
 	}
+
+	local bossMap = {
+		["boss_dragon"] = 1,
+		["boss_limbs"] = 3,
+		["boss_meat"] = 3,
+		["boss_alchemist"] = 2,
+		["parallel_alchemist"] = 4,
+		["boss_ghost"] = 3,
+		["boss_ghost_polyp"] = 3,
+		["islandspirit"] = 3,
+		["boss_pit"] = 2,
+		["boss_robot"] = 3,
+		["fish_giga"] = 3,
+		["maggot_tiny"] = 3,
+		["parallel_tentacles"] = 4,
+		["gate_guardian"] = 1,
+		["gate_monster_a"] = 1,
+		["gate_monster_b"] = 1,
+		["gate_monster_c"] = 1,
+		["gate_monster_d"] = 1,
+		["boss_wizard"] = 2,
+		["boss_centipede"] = 1,
+		["ultimate_killer"] = 3,
+		["friend"] = 3,
+		["boss_sky"] = 3
+	}
 	
 	local outData = {
 		["by_location_id"] = {},
-		["by_animal_name"] = {}
+		["by_animal_name"] = {},
+		["path_data"] = bossMap,
 	}
 	
 	for i, name in ipairs(vanillaAnimalNames) do

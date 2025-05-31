@@ -1,3 +1,5 @@
+local item_table = dofile("data/archipelago/scripts/item_mappings.lua")
+
 local function ap_extend_perk_list()
 	local function remove_from_pool(perk_name)
 		for _, perk in pairs(perk_list) do
@@ -115,7 +117,35 @@ local function ap_extend_perk_list()
 			end
 		end
 	end,
-})
+	})
+
+	for _, item in pairs(item_table) do
+		if item.soul ~= nil then
+
+			local icon_name = item.perk:gsub("AP_SOUL_", ""):lower()
+			if icon_name == "gate_guardian" then icon_name = "gate_monster_b" end
+
+			table.insert(perk_list,
+				{
+					id = item.perk,
+					ui_name = "$perk_" .. item.perk,
+					ui_description = "$perkdesc_" .. item.perk,
+					ui_icon = "data/ui_gfx/animal_icons/" .. icon_name  .. ".png",
+					perk_icon = "data/ui_gfx/animal_icons/" .. icon_name .. ".png",
+					usable_by_enemies = false,
+					stackable = STACKABLE_NO,
+					max_in_perk_pool = 1,
+					not_in_default_perk_pool = true,
+					func = function( entity_perk_item, entity_who_picked, item_name )
+						GlobalsSetValue( item.perk, "1" )
+					end,
+					func_remove = function( entity_who_picked )
+						GlobalsSetValue( item.perk, "0" )
+					end,
+				}
+			)
+		end
+	end
 
 end
 

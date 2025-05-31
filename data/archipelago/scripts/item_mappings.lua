@@ -44,4 +44,26 @@ return {
 	[110032] = { items = { "data/archipelago/entities/items/pw_teleporter.xml" }, redeliverable = true, newgame = true, wand = true }, -- pw teleporter for pw options
 
 	[110033] = { spells = { "GAMMA" }, redeliverable = true, newgame = true },
+
+	[110161] = { perk = "AP_SOUL_BOSS_DRAGON", soul = "Suomuhauki", rediverable = true, newgame = true },
+	[110162] = { perk = "AP_SOUL_BOSS_LIMBS", soul = "Kolmisilmän Koipi", rediverable = true, newgame = true },
+	[110163] = { perk = "AP_SOUL_BOSS_MEAT", soul = "Kolmisilmän sydän", rediverable = true, newgame = true },
+	[110164] = { perk = "AP_SOUL_BOSS_ALCHEMIST", soul = "Ylialkemisti", rediverable = true, newgame = true },
+	[110165] = { perk = "AP_SOUL_PARALLEL_ALCHEMIST", soul = "Alkemistin Varjo", rediverable = true, newgame = true },
+	[110166] = { perk = "AP_SOUL_BOSS_GHOST", soul = "Unohdettu", rediverable = true, newgame = true },
+	[110167] = { perk = "AP_SOUL_BOSS_GHOST_POLYP", soul = "Häive", rediverable = true, newgame = true },
+	[110168] = { perk = "AP_SOUL_ISLANDSPIRIT", soul = "Tapion vasalli", rediverable = true, newgame = true },
+	[110169] = { perk = "AP_SOUL_BOSS_PIT", soul = "Sauvojen tuntija", rediverable = true, newgame = true },
+	[110170] = { perk = "AP_SOUL_BOSS_ROBOT", soul = "Kolmisilmän silmä", rediverable = true, newgame = true },
+	[110171] = { perk = "AP_SOUL_FISH_GIGA", soul = "Syväolento", rediverable = true, newgame = true },
+	[110172] = { perk = "AP_SOUL_MAGGOT_TINY", soul = "Limatoukka", rediverable = true, newgame = true },
+	[110173] = { perk = "AP_SOUL_PARALLEL_TENTACLES", soul = "Kolmisilmän Kätyri", rediverable = true, newgame = true },
+	[110174] = { perk = "AP_SOUL_GATE_GUARDIAN", soul = "Gate Guardian", rediverable = true, newgame = true },
+
+	[110178] = { perk = "AP_SOUL_BOSS_WIZARD", soul = "Mestarien mestari", rediverable = true, newgame = true },
+	[110179] = { perk = "AP_SOUL_BOSS_CENTIPEDE", soul = "Kolmisilmä", rediverable = true, newgame = true },
+	[110180] = { perk = "AP_SOUL_ULTIMATE_KILLER", soul = "Kauhuhirviö", rediverable = true, newgame = true },
+	[110181] = { perk = "AP_SOUL_FRIEND", soul = "Toveri", rediverable = true, newgame = true },
+	[110182] = { perk = "AP_SOUL_BOSS_SKY", soul = "Kivi", rediverable = true, newgame = true },
+
 }

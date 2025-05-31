@@ -77,6 +77,18 @@ class BossesAsChecks(Choice):
     option_all_bosses = 3
     default = 0
 
+class BossSoulsAsItems(Choice):
+    """
+    Prevents bosses from spawning until acquiring their respective "Soul" item.
+    The Only Checks option only adds souls to bosses that have location checks added via the option.
+    The All Bosses option adds souls to all bosses and minibosses.
+    """
+    display_name = "Boss Souls as Items"
+    option_no_bosses = 0
+    option_check_bosses = 1
+    option_all_bosses = 2
+    default = 0
+
 
 # Note: Most damageable entities are referred to internally as "Animals", including things such as the player character, Bosses, Crystals, Sheep, etc.
 # This option currently avoids bosses, except for the 2 common parallel bosses
@@ -185,6 +197,7 @@ class NoitaOptions(PerGameCommonOptions):
     pedestal_checks: PedestalChecks
     orbs_as_checks: OrbsAsChecks
     bosses_as_checks: BossesAsChecks
+    boss_souls: BossSoulsAsItems
     animals_as_checks: AnimalsAsChecks
     forges_as_checks: ForgesAsChecks
     apotheosis_enabled: ApotheosisEnabled

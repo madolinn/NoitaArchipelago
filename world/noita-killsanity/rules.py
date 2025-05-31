@@ -128,6 +128,22 @@ def holy_mountain_unlock_conditions(world: "NoitaWorld") -> None:
                 has_orb_count(state, world.player, items_needed * 3)
             )
 
+def boss_kill_conditions(world: "NoitaWorld") -> None:
+    boss_souls = world.options.boss_souls.value
+    world_locations = list(map(lambda loc: loc.name, world.get_locations()))
+    boss_locations = locations.location_name_groups["Boss"]
+
+    if boss_souls >= 1:
+        for boss in boss_locations:
+            if boss in world_locations:
+                soul_name = f"Soul of {boss}"
+                boss_location = world.multiworld.get_location(boss, world.player)
+                GenericRules.add_rule(boss_location, lambda state, item=soul_name: state.has(item, world.player))
+
+                if boss == "Kolmisilmä":
+                    victory_location = world.multiworld.get_location("Victory", world.player)
+                    GenericRules.add_rule(victory_location, lambda state, item=soul_name: state.has(item, world.player))
+
 
 def biome_unlock_conditions(world: "NoitaWorld") -> None:
     lukki_entrances = world.multiworld.get_region("Lukki Lair", world.player).entrances
@@ -171,6 +187,7 @@ def create_all_rules(world: "NoitaWorld") -> None:
         holy_mountain_unlock_conditions(world)
         biome_unlock_conditions(world)
     victory_unlock_conditions(world)
+    boss_kill_conditions(world)
 
     # Prevent the Map perk (used to find Toveri) from being on Toveri (boss)
     if world.options.bosses_as_checks.value >= BossesAsChecks.option_all_bosses:

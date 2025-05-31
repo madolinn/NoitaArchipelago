@@ -329,6 +329,12 @@ function RECV_MSG.Connected()
 	if slot_options.animals_need_credit ~= nil then
 		GlobalsSetValue("ap_animals_need_credit", slot_options.animals_need_credit)
 	end
+	if slot_options.bosses_as_checks ~= nil then
+		GlobalsSetValue("ap_bosses_as_checks", slot_options.bosses_as_checks)
+	end
+	if slot_options.boss_souls ~= nil then
+		GlobalsSetValue("ap_souls_enabled", slot_options.boss_souls)
+	end
 	
 	current_player_slot = ap:get_player_number()
 	Globals.PlayerSlot:set(current_player_slot)
@@ -650,62 +656,34 @@ end
 function OnPlayerSpawned()
 	is_player_spawned = true
 	GlobalsSetValue("ap_random_hax", 23)
-
-	--dofile("data/archipelago/scripts/entity_tester.lua")
-end
-
-local nxml = dofile_once("data/archipelago/lib/nxml.lua")
-
-local function ap_get_biome_lua_path(biome_file)
-	print("Checking Biome: " .. biome_file)
-
-	local content = ModTextFileGetContent(biome_file)
-	if content == "" or content == nil then
-		return nil, nil
-	end
-
-	local xml = nxml.parse(content)
-	local topo_elem = xml:first_of("Topology")
-
-	local biome_name = topo_elem.attr["name"]
-	local script_file = topo_elem.attr["lua_script"]
-
-	return biome_name, script_file
-end
-
-Exporter = Exporter or {}
-
---dofile("data/archipelago/scripts/biome_exporter.lua")
-
-local function ap_biomes_parser()
-	print("Start doing thing")
-
-	local touched_list = {}
-
-	local appendStr = [[
-
-local Exporter = dofile("data/archipelago/scripts/biome_exporter.lua")
-Exporter:Parse("%s", _G)
-
-]]
-
-	local fullPath = "data/biome/_biomes_all.xml"
-	local content = ModTextFileGetContent(fullPath)
-	local xml = nxml.parse(content)
-	for _, elem in ipairs(xml:all_of("Biome")) do
-		local biome_file = elem.attr["biome_filename"]
-		if biome_file ~= nil then
-			local biome_name, lua_path = ap_get_biome_lua_path(biome_file)
-			if lua_path ~= nil and touched_list[lua_path] == nil then
-				ModTextFileSetContent(lua_path, ModTextFileGetContent(lua_path) .. string.format(appendStr, biome_name))
-				touched_list[lua_path] = 1
-				
-			end
-		end
-	end
-	print(ModTextFileGetContent("data/scripts/biomes/hills.lua"))
 end
 
 function OnModPostInit()
-	--ap_biomes_parser()
+	--
+end
+
+local function pauseScreenText()
+
+	local winCondition = nil
+	local winConditionText = ""
+
+	if slot_options ~= nil then
+		winCondition = slot_options.victory_condition
+	end
+
+	if (winCondition ~= nil) then
+		winConditionText = ({ "Greed Ending", "Pure Ending (11 Orbs)", "Peaceful Ending (33 Orbs)", "Yendor Ending (34 Orbs!?)" })[winCondition + 1]
+	end
+
+	Gui = Gui or GuiCreate()
+	local guiW, guiH = GuiGetScreenDimensions(Gui)
+
+	GuiIdPushString(Gui, "archipelago_pause_text")
+	GuiColorSetForNextWidget(Gui, 0.35, 0.35, 0.35, 0.5)
+	GuiText(Gui, 12.5, guiH / 2 - 46, "Archipelago: " .. winConditionText, 1, "data/fonts/font_pixel.xml")
+	GuiIdPop(Gui)
+end
+
+function OnPausePreUpdate()
+	pauseScreenText()
 end
