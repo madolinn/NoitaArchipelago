@@ -24,6 +24,9 @@ function APCheck( damage_type_bit_field, damage_message, entity_thats_responsibl
 		local filename = EntityGetFilename(entity_id)
 
 		filename:gsub("/([^/.]+).xml", function(name)
+
+			name = name:gsub("_real$", "")
+
 			if name == "turret_left" then name = "turret_right" -- Thanks Noita :(
 			elseif name == "suspended_seamine" then name = "seamine" end
 

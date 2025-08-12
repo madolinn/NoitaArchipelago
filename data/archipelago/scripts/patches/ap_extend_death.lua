@@ -134,6 +134,15 @@ function APAddDeathComponent()
 		end
 	end
 
+	-- Boss Dragon is hardcoded weirdly, need to attach his original script_death back on
+	local content = ModTextFileGetContent('data/entities/animals/boss_dragon.xml')
+	if content ~= nil then
+		local xml = nxml.parse(content)
+		xml:add_child(nxml.parse([[
+			<LuaComponent script_death="data/scripts/animals/boss_dragon_death.lua"></LuaComponent>]]))
+		ModTextFileSetContent('data/entities/animals/boss_dragon.xml', tostring(xml))
+	end
+
 	if ModIsEnabled("Apotheosis") then
 		for _, path in ipairs(apotheosisPatchEntities) do
 			local content = ModTextFileGetContent(path)

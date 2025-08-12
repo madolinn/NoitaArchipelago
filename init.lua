@@ -162,6 +162,17 @@ local function CheckComponentItemsUnlocked()
 	Globals.LocationUnlockQueue:reset()
 end
 
+local function ShouldDeliverPerk(item)
+	local item_map_def = item_table[item["item"]];
+	if item_map_def ~= nil then
+		if item_map_def["perk"] ~= nil then
+			if not GameHasFlagRun("PERK_PICKED_" .. item_map_def["perk"]) then
+				return true
+			end
+		end
+	end
+	return false
+end
 
 local function ShouldDeliverItem(item)
 	local location_id = item["location"]
@@ -183,8 +194,12 @@ local function ShouldDeliverItem(item)
 			end
 			GameRemoveFlagRun("ap" .. location_id)
 		else
-			-- this is an item your co-op partner picked up in slot co-op
-			remove_collected_item(location_id)
+			if ShouldDeliverPerk(item) then
+				return true
+			else
+				-- this is an item your co-op partner picked up in slot co-op
+				remove_collected_item(location_id)
+			end
 		end
 	end
 	return true
