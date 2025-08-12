@@ -223,7 +223,7 @@ location_animal_mapping: Dict[str, AnimalLocation] = {
     #"seamine": AnimalLocation(113011, [ "Sea Mine", "Sea Mine" ], [ "Coal Pits" ], AnimalLocationFlag.main_path ),
     #"apparatus_01": AnimalLocation(113012, [ "Vault Apparatus (Hot)", "Vault Apparatus (Hot)" ], [ "The Vault" ], AnimalLocationFlag.main_path ),
     #"apparatus_02": AnimalLocation(113013, [ "Vault Apparatus (Cold)", "Vault Apparatus (Cold)" ], [ "The Vault" ], AnimalLocationFlag.main_path ),
-    "physics_cocoon": AnimalLocation(113014, [ "Worm Cocoon", "Worm Cocoon" ], [ "Underground Jungle" ], AnimalLocationFlag.main_path ),
+    #"physics_cocoon": AnimalLocation(113014, [ "Worm Cocoon", "Worm Cocoon" ], [ "Underground Jungle" ], AnimalLocationFlag.main_path ),
     "lukki_eggs": AnimalLocation(113015, [ "Lukki Eggs", "Lukki Eggs" ], [ "Underground Jungle" ], AnimalLocationFlag.main_path ),
 }
 
