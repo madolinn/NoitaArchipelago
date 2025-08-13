@@ -271,7 +271,7 @@ apotheosis_animal_mapping: Dict[str, AnimalLocation] = {
     "lukki_fire_tiny": AnimalLocation(112240, [ "Pikku Tulihämähäkki", "Tiny Fire Spider" ], [ "Core Mines" ], AnimalLocationFlag.never, ModFlag.apotheosis),
     "lukki_fire_miniboss": AnimalLocation(112241, [ "Nuori Tulihämähäkki", "Juvenile Fire Spider" ], [ "Core Mines" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
     "giant_centipede": AnimalLocation(112242, [ "Nuori Tuhatjalkainen", "Juvenile Centipede" ], [ "Underground Jungle" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
-    "locust_swarm": AnimalLocation(112243, [ "Heinäsirkka", "Locust Swarm" ], [ "Underground Jungle", "Pyramid", "Desert" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
+    "locust_swarm": AnimalLocation(112243, [ "Heinäsirkkojen Parvi", "Locust Swarm" ], [ "Underground Jungle", "Pyramid", "Desert" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
     "devourer_magic": AnimalLocation(112244, [ "Taikainen syöjä", "Magic Devourer" ], [ "Underground Jungle", "Sandcave", "Snowy Chasm", "Temple of the Art", "Pyramid", "Ancient Laboratory" ], AnimalLocationFlag.main_path, ModFlag.apotheosis),
     "seeker": AnimalLocation(112245, [ "Etsijä", "Seeker" ], [ "Power Plant" ], AnimalLocationFlag.pain, ModFlag.apotheosis),
     "miniboss_pit_02": AnimalLocation(112246, [ "Wandsin Arvostelija", "Appreciator of Wands" ], [ "Sunken Cavern", "Temple of Sacrilegious Remains" ], AnimalLocationFlag.pain, ModFlag.apotheosis),

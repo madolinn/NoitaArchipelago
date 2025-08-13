@@ -74,7 +74,7 @@ def create_all_regions_and_connections(world: "NoitaWorld") -> None:
 def append_mod_connections(connections) -> None:
     for region_name, region_data in apotheosis_connections.items():
         if region_name in connections:
-            connections[region_name] += region_data
+            connections[region_name] = noita_connections[region_name] + region_data
         else:
             connections[region_name] = region_data
 
