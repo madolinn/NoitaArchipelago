@@ -1,5 +1,6 @@
 # Regions are areas in your game that you travel to.
 from typing import Dict, List, TYPE_CHECKING
+from copy import deepcopy
 
 from BaseClasses import Entrance, Region
 from . import locations
@@ -44,7 +45,7 @@ def create_region(world: "NoitaWorld", region_name: str) -> Region:
 
 
 def create_regions(world: "NoitaWorld") -> Dict[str, Region]:
-    all_connections: Dict[str, List[str]] = noita_connections.copy()
+    all_connections: Dict[str, List[str]] = deepcopy(noita_connections)
     append_mod_connections(all_connections)
     noita_regions = sorted(set(all_connections.keys()).union(*all_connections.values()))
     return {name: create_region(world, name) for name in noita_regions}
@@ -75,7 +76,7 @@ def create_all_regions_and_connections(world: "NoitaWorld") -> None:
 def append_mod_connections(connections) -> None:
     for region_name, region_data in apotheosis_connections.items():
         if region_name in connections:
-            connections[region_name] = noita_connections[region_name] + region_data
+            connections[region_name] += region_data
         else:
             connections[region_name] = region_data
 
