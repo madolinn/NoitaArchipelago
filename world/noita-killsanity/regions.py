@@ -44,8 +44,9 @@ def create_region(world: "NoitaWorld", region_name: str) -> Region:
 
 
 def create_regions(world: "NoitaWorld") -> Dict[str, Region]:
-    append_mod_connections(noita_connections)
-    noita_regions = sorted(set(noita_connections.keys()).union(*noita_connections.values()))
+    all_connections: Dict[str, List[str]] = noita_connections.copy()
+    append_mod_connections(all_connections)
+    noita_regions = sorted(set(all_connections.keys()).union(*all_connections.values()))
     return {name: create_region(world, name) for name in noita_regions}
 
 
