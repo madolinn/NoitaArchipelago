@@ -45,8 +45,6 @@ def create_region(world: "NoitaWorld", region_name: str) -> Region:
 
 
 def create_regions(world: "NoitaWorld") -> Dict[str, Region]:
-    all_connections: Dict[str, List[str]] = deepcopy(noita_connections)
-    append_mod_connections(all_connections)
     noita_regions = sorted(set(all_connections.keys()).union(*all_connections.values()))
     return {name: create_region(world, name) for name in noita_regions}
 
@@ -60,7 +58,7 @@ def create_entrance(player: int, source: str, destination: str, regions: Dict[st
 
 # Creates connections based on our access mapping in `noita_connections`.
 def create_connections(player: int, regions: Dict[str, Region]) -> None:
-    for source, destinations in noita_connections.items():
+    for source, destinations in all_connections.items():
         new_entrances = [create_entrance(player, source, destination, regions) for destination in destinations]
         regions[source].exits = new_entrances
 
@@ -139,7 +137,10 @@ apotheosis_connections: Dict[str, List[str]] = {
     "Snowy Chasm": ["Sunken Cavern"],
     "Ant Nest": ["Core Mines"],
     "Power Plant": ["Virulent Caverns"],
-    "Virulent Caverns": ["Sinkhole", "Temple of Sacrilegious Remains"],
+    "Virulent Caverns": ["Temple of Sacrilegious Remains"],
 }
+
+all_connections: Dict[str, List[str]] = deepcopy(noita_connections)
+append_mod_connections(all_connections)
 
 noita_regions: List[str] = {}

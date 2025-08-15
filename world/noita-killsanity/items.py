@@ -140,14 +140,14 @@ item_table: Dict[str, ItemData] = {
 
     "Soul of Suomuhauki":                   ItemData(110161, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Kolmisilmän Koipi":            ItemData(110162, "Boss Souls", ItemClassification.progression_skip_balancing),
-    "Soul of Kolmisilmän sydän":            ItemData(110163, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Kolmisilmän Sydän":            ItemData(110163, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Ylialkemisti":                 ItemData(110164, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Alkemistin Varjo":             ItemData(110165, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Unohdettu":                    ItemData(110166, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Häive":                        ItemData(110167, "Boss Souls", ItemClassification.progression_skip_balancing),
-    "Soul of Tapion vasalli":               ItemData(110168, "Boss Souls", ItemClassification.progression_skip_balancing),
-    "Soul of Sauvojen tuntija":             ItemData(110169, "Boss Souls", ItemClassification.progression_skip_balancing),
-    "Soul of Kolmisilmän silmä":            ItemData(110170, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Tapion Vasalli":               ItemData(110168, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Sauvojen Tuntija":             ItemData(110169, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Kolmisilmän Silmä":            ItemData(110170, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Syväolento":                   ItemData(110171, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Limatoukka":                   ItemData(110172, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Kolmisilmän Kätyri":           ItemData(110173, "Boss Souls", ItemClassification.progression_skip_balancing),
@@ -155,7 +155,7 @@ item_table: Dict[str, ItemData] = {
     # Guardian B
     # Guardian C
     # Guardian D
-    "Soul of Mestarien mestari":            ItemData(110178, "Boss Souls", ItemClassification.progression_skip_balancing),
+    "Soul of Mestarien Mestari":            ItemData(110178, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Kolmisilmä":                   ItemData(110179, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Kauhuhirviö":                  ItemData(110180, "Boss Souls", ItemClassification.progression_skip_balancing),
     "Soul of Toveri":                       ItemData(110181, "Boss Souls", ItemClassification.progression_skip_balancing),

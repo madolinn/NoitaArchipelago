@@ -113,7 +113,7 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
     },
     "Lake": {
         "Syväolento": LocationData(110651, LocationFlag.main_world, "Boss"),
-        "Tapion vasalli": LocationData(110669, LocationFlag.main_world, "Boss"),
+        "Tapion Vasalli": LocationData(110669, LocationFlag.main_world, "Boss"),
     },
     "Frozen Vault": {
         "Frozen Vault Orb":      LocationData(110660, LocationFlag.main_world, "Orb"),
@@ -186,7 +186,7 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
         "Wizards' Den Pedestal": LocationData(110466, LocationFlag.main_world, "Pedestal"),
     },
     "Power Plant": {
-        "Kolmisilmän silmä":    LocationData(110657, LocationFlag.main_world, "Boss"),
+        "Kolmisilmän Silmä":    LocationData(110657, LocationFlag.main_world, "Boss"),
         "Power Plant Chest":    LocationData(110486, LocationFlag.main_world, "Chest"),
         "Power Plant Pedestal": LocationData(110506, LocationFlag.main_world, "Pedestal"),
     },
@@ -200,7 +200,7 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
         "Limatoukka": LocationData(110647, LocationFlag.main_world, "Boss"),
     },
     "West Meat Realm": {
-        "Kolmisilmän sydän": LocationData(110671, LocationFlag.main_world, "Boss"),
+        "Kolmisilmän Sydän": LocationData(110671, LocationFlag.main_world, "Boss"),
     },
     "The Laboratory": {
         "Kolmisilmä": LocationData(110646, LocationFlag.main_path, "Boss"),
@@ -223,7 +223,6 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
     "Sunken Cavern": {},
     "Core Mines": {},
     "Virulent Caverns": {},
-    "Sinkhole": {},
     "Temple of Sacrilegious Remains": {},
 }
 
