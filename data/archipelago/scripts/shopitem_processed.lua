@@ -33,6 +33,15 @@ local function get_cost_x_offset(price)
 	return textwidth * 0.5 - 0.5
 end -- get_cost_x_offset
 
+local function get_cost_y_offset(entity_id)
+	local offset = 20
+
+	if EntityHasTag(entity_id, "card_action") then
+		offset = 25
+	end
+
+	return offset
+end -- get_cost_y_offset
 
 -- Called when the entity gets created
 function init(entity_id)
@@ -53,7 +62,7 @@ function init(entity_id)
 		image_file="data/fonts/font_pixel_white.xml",
 		is_text_sprite="1", 
 		offset_x=tostring(get_cost_x_offset(data.price)),
-		offset_y="20",
+		offset_y=tostring(get_cost_y_offset(entity_id)),
 		update_transform="1",
 		update_transform_rotation="0",
 		text=tostring(data.price),
