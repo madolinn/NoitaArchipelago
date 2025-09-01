@@ -213,7 +213,6 @@ location_region_mapping: Dict[str, Dict[str, LocationData]] = {
     },
     "Forest": {},
     "Collapsed Mines": {},
-    "Snowy Chasm": {},
     "The Work (Sky)": {},
     "Parallel Worlds": {},
     "Unsorted": {},
