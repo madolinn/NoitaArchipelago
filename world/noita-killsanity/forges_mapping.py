@@ -23,7 +23,7 @@ location_forge_mapping: Dict[str, ForgeLocation] = {
 	"Forge Emerald Tablet - Volume IV": ForgeLocation(111904, "Sandcave", ForgeLocationFlag.main_world),
 	"Forge Emerald Tablet - Volume V": ForgeLocation(111905, "Magical Temple", ForgeLocationFlag.side_path),
 	"Forge Emerald Tablet - Volume VI": ForgeLocation(111906, "Lukki Lair", ForgeLocationFlag.side_path),
-	"Forge Emerald Tablet - Volume VII": ForgeLocation(111907, "Abyss Orb Room", ForgeLocationFlag.side_path),
+	"Forge Emerald Tablet - Volume VII": ForgeLocation(111907, "Hiisi Base", ForgeLocationFlag.side_path), #Hiisi Base is the earliest zone we can place the check, since the anvil is in it.
 	"Forge Emerald Tablet - Volume VIII": ForgeLocation(111908, "The Work (Hell)", ForgeLocationFlag.main_world),
 	"Forge Emerald Tablet - Volume IX": ForgeLocation(111909, "Snowy Chasm", ForgeLocationFlag.main_world),
 	"Forge Emerald Tablet - Volume X": ForgeLocation(111910, "Desert Chasm", ForgeLocationFlag.main_world),
