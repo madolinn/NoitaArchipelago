@@ -8,8 +8,8 @@ return {
 	[110002] = { items = { "data/entities/items/pickup/spell_refresh.xml" }, redeliverable = true },
 	[110003] = { items = { "data/entities/items/pickup/potion.xml" }, potion = true },
 
-	[110004] = { items = { "data/entities/items/pickup/goldnugget_200.xml" }, gold_amount = 200, redeliverable = true },
-	[110005] = { items = { "data/entities/items/pickup/goldnugget_1000.xml" }, gold_amount = 1000, redeliverable = true },
+	[110004] = { items = { "data/entities/items/pickup/goldnugget_200.xml" }, newgame = ModSettingGet("archipelago.newgame_golds"), gold_amount = 200, redeliverable = true },
+	[110005] = { items = { "data/entities/items/pickup/goldnugget_1000.xml" }, newgame = ModSettingGet("archipelago.newgame_golds"), gold_amount = 1000, redeliverable = true },
 
 	[110006] = { items = { "data/entities/items/wand_level_01.xml", "data/entities/items/wand_unshuffle_01.xml" }, redeliverable = true, newgame = true, wand = true },
 	[110007] = { items = { "data/entities/items/wand_level_02.xml", "data/entities/items/wand_unshuffle_02.xml" }, redeliverable = true, newgame = true, wand = true },
@@ -31,8 +31,8 @@ return {
 
 	[110022] = { items = { "mods/archipelago/data/archipelago/entities/items/orbs/ap_orb_randomizer_spawned.xml" }, orb = true, redeliverable = true, newgame = true },
 
-	[110023] = { items = { "data/entities/items/pickup/potion_random_material.xml" }, potion = true }, -- random potion
-	[110024] = { items = { "data/entities/items/pickup/potion_secret.xml" }, potion = true }, -- secret potion
+	[110023] = { items = { "data/entities/items/pickup/potion_random_material.xml" }, newgame = ModSettingGet("archipelago.newgame_potions"), potion = true }, -- random potion
+	[110024] = { items = { "data/entities/items/pickup/potion_secret.xml" }, newgame = ModSettingGet("archipelago.newgame_potions"), potion = true }, -- secret potion
 	[110025] = { items = { "data/entities/items/pickup/powder_stash.xml" }, redeliverable = true, newgame = true }, -- powder pouch
 	[110026] = { items = { "data/entities/items/pickup/physics_die.xml" } }, -- chaos die
 	[110027] = { items = { "data/entities/items/pickup/physics_greed_die.xml" } }, -- greed die

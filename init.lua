@@ -45,6 +45,8 @@ local death_link_status = false
 
 local ap = nil
 
+local mod_version = "0.10.0"
+
 ----------------------------------------------------------------------------------------------------
 -- DEATHLINK
 ----------------------------------------------------------------------------------------------------
@@ -695,7 +697,7 @@ local function pauseScreenText()
 
 	GuiIdPushString(Gui, "archipelago_pause_text")
 	GuiColorSetForNextWidget(Gui, 0.35, 0.35, 0.35, 0.5)
-	GuiText(Gui, 12.5, guiH / 2 - 46, "Archipelago: " .. winConditionText, 1, "data/fonts/font_pixel.xml")
+	GuiText(Gui, 12.5, guiH / 2 - 46, "Archipelago (Mod v." .. mod_version .. "): " .. winConditionText, 1, "data/fonts/font_pixel.xml")
 	GuiIdPop(Gui)
 end
 

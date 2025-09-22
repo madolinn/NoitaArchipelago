@@ -1,5 +1,6 @@
 dofile_once("data/scripts/perks/perk.lua")
 dofile_once("data/archipelago/scripts/ap_utils.lua")
+dofile_once("data/scripts/game_helpers.lua")
 local item_table = dofile("data/archipelago/scripts/item_mappings.lua")
 local AP = dofile("data/archipelago/scripts/constants.lua")
 
@@ -19,16 +20,20 @@ local itemZones =  {
 
 	[110033] = { x = 374, y =  363, w = 1 }, -- Gamma
 
-	[110028] = { x = 175, y = 387, w = 24 }, -- Heals
-	[110029] = { x = 199, y = 387, w = 24 },
+	[110028] = { x = 175, y = 387, w = 24 }, -- Kammi
+	[110029] = { x = 199, y = 387, w = 24 }, -- Gourd
 
+	[110023] = { x = 253, y = 377, w = 22 }, -- Potions
+	[110024] = { x = 273, y = 377, w = 23 }, -- Secret Potions
 	[110025] = { x = 253, y = 387, w = 45 }, -- Powders
 	
-	[110030] = { x = 320, y = 387, w = 23 }, -- Misc
-	[110031] = { x = 343, y = 387, w = 23 },
+	[110030] = { x = 320, y = 387, w = 23 }, -- Sadekivi
+	[110031] = { x = 343, y = 387, w = 23 }, -- Broken Wand
 }
 
 function APEggStartSpawn(item_counts)
+
+	local total_golds = 0
 
 	for item, quantity in pairs(item_counts) do
 			
@@ -65,22 +70,46 @@ function APEggStartSpawn(item_counts)
 		elseif item ~= AP.TRAP_ID then
 			-- spawn the rest of the items on the cave floor
 			for i = 0, quantity - 1 do
-				local item_to_spawn = item_table[item].items[Random(1, #item_table[item].items)]
-				local itemx = worldOffsetX + itemZones[item].x + (itemZones[item].w * (i / quantity))
-				local itemy = worldOffsetY + itemZones[item].y
-				EntityLoad(item_to_spawn, itemx, itemy)
+				if item_table[item].gold_amount ~= nil then
+					total_golds = total_golds + item_table[item].gold_amount
+				else
+					local item_to_spawn = item_table[item].items[Random(1, #item_table[item].items)]
+					local itemx = worldOffsetX + itemZones[item].x + (itemZones[item].w * (i / quantity))
+					local itemy = worldOffsetY + itemZones[item].y
+
+					if item_table[item].potion == true then
+						spawn_potion(item_to_spawn, itemx, itemy)
+					else
+						EntityLoad(item_to_spawn, itemx, itemy)
+					end
+				end
 			end
 			item_counts[item] = nil
 		end
 
 	end
 
-
+	if total_golds > 0 then
+		local gold_sizes = { 10, 50, 200, 1000, 10000, 200000, 2000000 }
+		local gold_filename = "10"
+		local gold_size_index = 1
+		
+		while total_golds >= gold_sizes[gold_size_index] do
+			gold_filename = tostring(gold_sizes[gold_size_index])
+			if gold_size_index == #gold_sizes then
+				gold_filename = "x"
+				break
+			end
+			gold_size_index = gold_size_index + 1
+		end
+		load_gold_entity("data/entities/items/pickup/goldnugget_" .. gold_filename .. ".xml", 0, -2320, true)
+	end
+	
 
 	--EntityLoad("data/entities/props/physics/chain_torch_ghostly.xml", worldOffsetX + 218, worldOffsetY + 185)
 	--EntityLoad("data/entities/props/physics/chain_torch_ghostly.xml", worldOffsetX + 265, worldOffsetY + 80)
 
-	local lightSource = EntityLoad("data/entities/props/physics_skateboard.xml", worldOffsetX + 235, worldOffsetY + 240)
+	local lightSource = EntityLoad("data/entities/props/physics_skateboard.xml", worldOffsetX + 230, worldOffsetY + 240)
 	EntityAddTag(lightSource, "prop")
 	EntityAddComponent2(lightSource, "LightComponent", {radius = 900, r = 100, g = 100, b = 255, blinking_freq = 1 })
 

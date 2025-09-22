@@ -73,7 +73,19 @@ local translations = {
 	},
 	["$ap_death_link_settings_desc"] = {
 		en="When set to On, the death link setting in your Archipelago YAML will be used.\nWhen set to Off, this will override your YAML and disable death link.\nWhen set to Traps, it will act as On if death link was enabled in your YAML,\nexcept it will trigger a random trap effect when a death link is received.\nBoth On and Traps will still send death links when you die."
-	}
+	},
+	["$ap_newgame_potions_name"] = {
+		en="Respawn Fun AP Potions on New Game"
+	},
+	["$ap_newgame_potions_desc"] = {
+		en="Allows potions to be redelivered upon a new game like most other items. Careful!"
+	},
+	["$ap_newgame_golds_name"] = {
+		en="Respawn AP Gold on New Game"
+	},
+	["$ap_newgame_golds_desc"] = {
+		en="Allows gold to be redelivered upon a new game like most other items. One. Big. Nuggy."
+	},
 }
 
 local function translate(msg)
@@ -182,6 +194,20 @@ local mod_settings =
 					{"spinny_logo", "Spinny Logo"},
 					{"porb", "Porb"}
 				},
+				scope = MOD_SETTING_SCOPE_NEW_GAME,
+			},
+			{
+				id = "newgame_potions",
+				ui_name = translate("$ap_newgame_potions_name"),
+				ui_description = translate("$ap_newgame_potions_desc"),
+				value_default = false,
+				scope = MOD_SETTING_SCOPE_NEW_GAME,
+			},
+				{
+				id = "newgame_golds",
+				ui_name = translate("$ap_newgame_golds_name"),
+				ui_description = translate("$ap_newgame_golds_desc"),
+				value_default = false,
 				scope = MOD_SETTING_SCOPE_NEW_GAME,
 			},
 			{
