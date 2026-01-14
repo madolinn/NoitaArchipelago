@@ -759,4 +759,42 @@ streaming_events =
             end
         end,
     },
+    {
+        id = "PLAYER_TRIP_BALLS",
+        ui_name = "$ap_streamingevent_player_trip_balls",
+        ui_description = "$ap_streamingeventdesc_player_trip_balls",
+        ui_icon = "data/ui_gfx/streaming_event_icons/protect_enemies.png",
+        ui_author = STREAMING_EVENT_AUTHOR_NOLLAGAMES,
+        weight = 0.5,
+        kind = STREAMING_EVENT_BAD,
+        action = function(event)
+            for i,entity_id in pairs( get_players() ) do
+                EntityIngestMaterial( entity_id, CellFactory_GetType("fungi"), 700 )
+            end
+        end,
+    },
+	{
+		id = "POLYMORPH_ENEMIES",
+		ui_name = "$streamingevent_polymorph_enemies",
+		ui_description = "$streamingeventdesc_polymorph_enemies",
+		ui_icon = "data/ui_gfx/streaming_event_icons/polymorph_enemies.png",
+		ui_author = STREAMING_EVENT_AUTHOR_NOLLAGAMES,
+		weight = 0.5,
+		kind = STREAMING_EVENT_BAD,
+		action = function(event)
+			for id,enemy in pairs(get_enemies_in_radius(800)) do
+				local game_effect_comp
+				local game_effect_entity
+				local icon
+
+                game_effect_comp,game_effect_entity = GetGameEffectLoadTo( enemy, "POLYMORPH_RANDOM", false )
+                icon = "polymorph_random"
+				
+				if (game_effect_comp ~= nil) and (game_effect_entity ~= nil) and (icon ~= nil) then
+					ComponentSetValue2( game_effect_comp, "frames", -1 )
+					add_icon_above_head( game_effect_entity, "data/ui_gfx/status_indicators/" .. icon .. ".png", event )
+				end
+			end
+		end,
+	},
 }
